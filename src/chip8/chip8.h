@@ -7,7 +7,7 @@
 # define CHIP8_MEMORY_ROM_START 512
 # define CHIP8_KEYBOARD_MAX_KEY 16
 
-# include <unitypes.h>
+# include <stdint.h>
 
 typedef struct s_chip8_cpu {
     uint8_t  memory[CHIP8_MEMORY_SIZE];
@@ -126,5 +126,135 @@ void chip8_instruction_00ee(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3
  * @param b3 Opcode third byte
  */
 void chip8_instruction_3xkk(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Skip next instruction if VX != Byte.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_4xkk(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Skip next instruction if VX == VY.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_5xy0(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = Byte.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_6xkk(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VX + Byte.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_7xkk(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VY, VF updates.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xy0(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VX | VY, VF updates.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xy1(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VX & VY, VF updates.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xy2(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VX ^ VY, VF updates.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xy3(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VX + VY, VF = carry.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xy4(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VX - VY, VF = !borrow.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xy5(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VX >> 1, VF = carry.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xy6(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VY - VX, VF = !borrow.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xy7(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = VX << 1, VF = carry.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_8xye(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
 
 #endif //CHIP8EMU_CHIP8_H

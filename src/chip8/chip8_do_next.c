@@ -28,6 +28,45 @@ void chip8_do_next(s_chip8_cpu *cpu) {
             case 5:
                 chip8_instruction_3xkk(cpu, b1, b2, b3);
                 break;
+            case 6:
+                chip8_instruction_4xkk(cpu, b1, b2, b3);
+                break;
+            case 7:
+                chip8_instruction_5xy0(cpu, b1, b2, b3);
+                break;
+            case 8:
+                chip8_instruction_6xkk(cpu, b1, b2, b3);
+                break;
+            case 9:
+                chip8_instruction_7xkk(cpu, b1, b2, b3);
+                break;
+            case 10:
+                chip8_instruction_8xy0(cpu, b1, b2, b3);
+                break;
+            case 11:
+                chip8_instruction_8xy1(cpu, b1, b2, b3);
+                break;
+            case 12:
+                chip8_instruction_8xy2(cpu, b1, b2, b3);
+                break;
+            case 13:
+                chip8_instruction_8xy3(cpu, b1, b2, b3);
+                break;
+            case 14:
+                chip8_instruction_8xy4(cpu, b1, b2, b3);
+                break;
+            case 15:
+                chip8_instruction_8xy5(cpu, b1, b2, b3);
+                break;
+            case 16:
+                chip8_instruction_8xy6(cpu, b1, b2, b3);
+                break;
+            case 17:
+                chip8_instruction_8xy7(cpu, b1, b2, b3);
+                break;
+            case 18:
+                chip8_instruction_8xye(cpu, b1, b2, b3);
+                break;
         }
     }
 }
