@@ -27,33 +27,53 @@ typedef struct s_chip8_mask {
     uint16_t id[CHIP8_NB_OPCODE];
 } s_chip8_mask;
 
+typedef enum e_loadrom_status {
+    LOAD_ROM_STATUS_SUCCESS          = 0,
+    LOAD_ROM_STATUS_NOT_A_VALID_FILE = 1,
+    LOAD_ROM_STATUS_CANT_OPEN_FILE   = 2,
+    LOAD_ROM_STATUS_READ_ERROR       = 3
+} e_loadrom_status;
+
 s_chip8_mask gl_chip8_mask;
 
 /**
+ * Execute current operation code and increment PC.
  *
  * @param cpu Handle to the chip8 CPU instance
  */
 void chip8_do_next(s_chip8_cpu *cpu);
 
 /**
+ * Retrieves internal offset of the instruction.
  *
- * @param opcode
+ * @param opcode The instruction operation code
  * @return
  */
 uint8_t get_offset_instruction(uint16_t opcode);
 
 /**
+ * Retrieves the current operation code.
  *
  * @param cpu Handle to the chip8 CPU instance
- * @return
+ * @return The current operation code
  */
 uint16_t chip8_get_opcode(s_chip8_cpu *cpu);
 
 /**
+ * Initialize the Chip8 CPU.
  *
  * @param cpu Handle to the chip8 CPU instance
  */
 void chip8_initialize(s_chip8_cpu *cpu);
+
+/**
+ * Load ROM into memory.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param filename Name of the file to load
+ * @return Status of the operation
+ */
+e_loadrom_status chip8_load_rom(s_chip8_cpu *cpu, const char *filename);
 
 /**
  * Reset the Chip8 CPU (but keep the current rom loaded).
@@ -63,6 +83,7 @@ void chip8_initialize(s_chip8_cpu *cpu);
 void chip8_reset(s_chip8_cpu *cpu);
 
 /**
+ * Update counter.
  *
  * @param cpu Handle to the chip8 CPU instance
  */

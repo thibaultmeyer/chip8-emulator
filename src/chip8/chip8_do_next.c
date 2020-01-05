@@ -118,5 +118,6 @@ void chip8_do_next(s_chip8_cpu *cpu) {
         }
 
         cpu->pc += 2;
+        chip8_update_counter(cpu);
     }
 }

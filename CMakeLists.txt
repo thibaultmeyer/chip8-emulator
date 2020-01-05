@@ -11,6 +11,7 @@ add_executable(
         src/chip8/chip8_get_offset_instruction.c
         src/chip8/chip8_get_opcode.c
         src/chip8/chip8_initialize.c
+        src/chip8/chip8_load_rom.c
         src/chip8/chip8_reset.c
         src/chip8/chip8_update_counter.c
         src/chip8/chip8_instruction_0nnn.c
