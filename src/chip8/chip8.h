@@ -1,6 +1,9 @@
 #ifndef CHIP8EMU_CHIP8_H
 # define CHIP8EMU_CHIP8_H
 # define CHIP8_MEMORY_SIZE      4096
+# define CHIP8_VIDEO_DIM_WIDTH  64
+# define CHIP8_VIDEO_DIM_HEIGHT 32
+# define CHIP8_VIDEO_SIZE       CHIP8_VIDEO_DIM_WIDTH * CHIP8_VIDEO_DIM_HEIGHT
 # define CHIP8_NB_REGISTER      16
 # define CHIP8_MAX_JUMP         16
 # define CHIP8_NB_OPCODE        35
@@ -20,6 +23,7 @@ typedef struct s_chip8_cpu {
     uint16_t pc;
     uint16_t current_opcode;
     uint8_t  keyboard[CHIP8_KEYBOARD_MAX_KEY];
+    uint8_t  video[CHIP8_VIDEO_SIZE];
 } s_chip8_cpu;
 
 typedef struct s_chip8_mask {
