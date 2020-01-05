@@ -67,6 +67,56 @@ void chip8_do_next(s_chip8_cpu *cpu) {
             case 18:
                 chip8_instruction_8xye(cpu, b1, b2, b3);
                 break;
+            case 19:
+                chip8_instruction_9xy0(cpu, b1, b2, b3);
+                break;
+            case 20:
+                chip8_instruction_annn(cpu, b1, b2, b3);
+                break;
+            case 21:
+                chip8_instruction_bnnn(cpu, b1, b2, b3);
+                break;
+            case 22:
+                chip8_instruction_cxkk(cpu, b1, b2, b3);
+                break;
+            case 23:
+                chip8_instruction_dxyn(cpu, b1, b2, b3);
+                break;
+            case 24:
+                chip8_instruction_ex9e(cpu, b1, b2, b3);
+                break;
+            case 25:
+                chip8_instruction_exa1(cpu, b1, b2, b3);
+                break;
+            case 26:
+                chip8_instruction_fx07(cpu, b1, b2, b3);
+                break;
+            case 27:
+                chip8_instruction_fx0a(cpu, b1, b2, b3);
+                break;
+            case 28:
+                chip8_instruction_fx15(cpu, b1, b2, b3);
+                break;
+            case 29:
+                chip8_instruction_fx18(cpu, b1, b2, b3);
+                break;
+            case 30:
+                chip8_instruction_fx1e(cpu, b1, b2, b3);
+                break;
+            case 31:
+                chip8_instruction_fx29(cpu, b1, b2, b3);
+                break;
+            case 32:
+                chip8_instruction_fx33(cpu, b1, b2, b3);
+                break;
+            case 33:
+                chip8_instruction_fx55(cpu, b1, b2, b3);
+                break;
+            case 34:
+                chip8_instruction_fx65(cpu, b1, b2, b3);
+                break;
         }
+
+        cpu->pc += 2;
     }
 }

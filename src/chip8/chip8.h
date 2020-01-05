@@ -56,6 +56,7 @@ uint16_t chip8_get_opcode(s_chip8_cpu *cpu);
 void chip8_initialize(s_chip8_cpu *cpu);
 
 /**
+ * Reset the Chip8 CPU (but keep the current rom loaded).
  *
  * @param cpu Handle to the chip8 CPU instance
  */
@@ -256,5 +257,165 @@ void chip8_instruction_8xy7(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3
  * @param b3 Opcode third byte
  */
 void chip8_instruction_8xye(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Skip next instruction if VX != VY.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_9xy0(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set I = Addr.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_annn(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Jump to Addr + V0.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_bnnn(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = random & Byte.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_cxkk(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Draw Nibble byte sprite stored at [I] at VX, VY. Set VF = collision.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_dxyn(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Skip next instruction if key VX down.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_ex9e(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Skip next instruction if key VX up.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_exa1(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = key, wait for keypress.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx0a(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set VX = delaytimer.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx07(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set delaytimer = VX.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx15(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set soundtimer = VX.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx18(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Set I = I + VX.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx1e(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Point I to 5 byte numeric sprite for value in VX.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx29(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Store BCD of VX in [I], [I+1], [I+2].
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx33(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Store V0 .. VX in [I] .. [I+X].
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx55(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
+
+/**
+ * Read V0 .. VX from [I] .. [I+X].
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param b1 Opcode first byte
+ * @param b2 Opcode second byte
+ * @param b3 Opcode third byte
+ */
+void chip8_instruction_fx65(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uint8_t b3);
 
 #endif //CHIP8EMU_CHIP8_H

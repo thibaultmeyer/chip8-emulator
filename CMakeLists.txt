@@ -32,4 +32,20 @@ add_executable(
         src/chip8/chip8_instruction_8xy6.c
         src/chip8/chip8_instruction_8xy7.c
         src/chip8/chip8_instruction_8xye.c
+        src/chip8/chip8_instruction_9xy0.c
+        src/chip8/chip8_instruction_annn.c
+        src/chip8/chip8_instruction_bnnn.c
+        src/chip8/chip8_instruction_cxkk.c
+        src/chip8/chip8_instruction_dxyn.c
+        src/chip8/chip8_instruction_ex9e.c
+        src/chip8/chip8_instruction_exa1.c
+        src/chip8/chip8_instruction_fx0a.c
+        src/chip8/chip8_instruction_fx1e.c
+        src/chip8/chip8_instruction_fx07.c
+        src/chip8/chip8_instruction_fx15.c
+        src/chip8/chip8_instruction_fx18.c
+        src/chip8/chip8_instruction_fx29.c
+        src/chip8/chip8_instruction_fx33.c
+        src/chip8/chip8_instruction_fx55.c
+        src/chip8/chip8_instruction_fx65.c
 )
