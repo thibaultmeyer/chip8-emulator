@@ -37,7 +37,6 @@ typedef enum e_loadrom_status {
     LOAD_ROM_STATUS_ERROR_FILE_TOO_BIG     = 2,
     LOAD_ROM_STATUS_ERROR_CANT_OPEN_FILE   = 3,
     LOAD_ROM_STATUS_ERROR_READ_ERROR       = 4,
-
 } e_loadrom_status;
 
 s_chip8_mask gl_chip8_mask;
@@ -48,6 +47,13 @@ s_chip8_mask gl_chip8_mask;
  * @param cpu Handle to the chip8 CPU instance
  */
 void chip8_do_next(s_chip8_cpu *cpu);
+
+/**
+ * Free an existing chip8 CPU.
+ *
+ * @param cpu The chip8 CPU to free
+ */
+void chip8_free_cpu(s_chip8_cpu *cpu);
 
 /**
  * Retrieves internal offset of the instruction.

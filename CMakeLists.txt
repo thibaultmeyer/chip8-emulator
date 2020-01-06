@@ -1,13 +1,28 @@
-cmake_minimum_required(VERSION 3.15)
-project(chip8emu C)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.15)
+PROJECT(chip8emu C)
 
-set(CMAKE_C_STANDARD 99)
+SET(CMAKE_C_STANDARD 99)
 
-add_executable(
+# Use the package PkgConfig to detect GTK+ headers/library files
+FIND_PACKAGE(PkgConfig REQUIRED)
+PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
+PKG_CHECK_MODULES(SDL2 REQUIRED sdl2)
+
+# Setup CMake to use GTK+, tell the compiler where to look for headers
+# and to the linker where to look for libraries
+INCLUDE_DIRECTORIES(${GTK3_INCLUDE_DIRS} ${SDL2_INCLDE_DIRS})
+LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS} ${SDL2_LIBRARY_DIRS})
+
+# Add other flags to the compiler
+ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER} ${SDL2_CFLAGS_OTHER})
+
+# Files
+ADD_EXECUTABLE(
         chip8emu
         src/main.c
         src/chip8/chip8.h
         src/chip8/chip8_do_next.c
+        src/chip8/chip8_free_cpu.c
         src/chip8/chip8_get_offset_instruction.c
         src/chip8/chip8_get_opcode.c
         src/chip8/chip8_initialize.c
@@ -49,4 +64,13 @@ add_executable(
         src/chip8/chip8_instruction_fx33.c
         src/chip8/chip8_instruction_fx55.c
         src/chip8/chip8_instruction_fx65.c
+        src/gui/gui.h
+        src/gui/gui_callback_app_activate.c
+        src/gui/gui_callback_header_bar_load_rom.c
+        src/gui/gui_callback_sdl_render_screen.c
+        src/gui/gui_initialize_header_bar.c
+        src/gui/gui_initialize_main_window.c
 )
+
+# Link the target to the GTK+ libraries
+TARGET_LINK_LIBRARIES(chip8emu ${GTK3_LIBRARIES} ${SDL2_LIBRARIES})
