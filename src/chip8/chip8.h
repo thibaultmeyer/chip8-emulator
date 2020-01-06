@@ -32,10 +32,12 @@ typedef struct s_chip8_mask {
 } s_chip8_mask;
 
 typedef enum e_loadrom_status {
-    LOAD_ROM_STATUS_SUCCESS          = 0,
-    LOAD_ROM_STATUS_NOT_A_VALID_FILE = 1,
-    LOAD_ROM_STATUS_CANT_OPEN_FILE   = 2,
-    LOAD_ROM_STATUS_READ_ERROR       = 3
+    LOAD_ROM_STATUS_SUCCESS                = 0,
+    LOAD_ROM_STATUS_ERROR_NOT_A_VALID_FILE = 1,
+    LOAD_ROM_STATUS_ERROR_FILE_TOO_BIG     = 2,
+    LOAD_ROM_STATUS_ERROR_CANT_OPEN_FILE   = 3,
+    LOAD_ROM_STATUS_ERROR_READ_ERROR       = 4,
+
 } e_loadrom_status;
 
 s_chip8_mask gl_chip8_mask;
