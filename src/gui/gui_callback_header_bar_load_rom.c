@@ -1,4 +1,4 @@
-#include <path_utils.h>
+#include <libintl.h>
 #include "gui.h"
 
 void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
@@ -6,9 +6,9 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
     GtkWidget *dialog = gtk_file_chooser_dialog_new("Load a ROM",
                                                     GTK_WINDOW(gl_gui_components.gtk_window),
                                                     GTK_FILE_CHOOSER_ACTION_OPEN,
-                                                    _("_Cancel"),
+                                                    gettext("_Cancel"),
                                                     GTK_RESPONSE_CANCEL,
-                                                    _("_Open"),
+                                                    gettext("_Open"),
                                                     GTK_RESPONSE_ACCEPT,
                                                     NULL);
 

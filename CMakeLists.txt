@@ -10,7 +10,7 @@ PKG_CHECK_MODULES(SDL2 REQUIRED sdl2)
 
 # Setup CMake to use GTK+, tell the compiler where to look for headers
 # and to the linker where to look for libraries
-INCLUDE_DIRECTORIES(${GTK3_INCLUDE_DIRS} ${SDL2_INCLDE_DIRS})
+INCLUDE_DIRECTORIES(${GTK3_INCLUDE_DIRS} ${SDL2_INCLUDE_DIRS})
 LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS} ${SDL2_LIBRARY_DIRS})
 
 # Add other flags to the compiler

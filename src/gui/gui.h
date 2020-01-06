@@ -3,7 +3,7 @@
 
 # include "../chip8/chip8.h"
 # include <gtk/gtk.h>
-# include <SDL2/SDL.h>
+# include <SDL.h>
 
 typedef struct s_gui_components {
     GtkWidget    *gtk_window;
