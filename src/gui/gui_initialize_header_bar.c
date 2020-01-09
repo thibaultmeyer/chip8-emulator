@@ -23,7 +23,7 @@ void gui_initialize_header_bar(void) {
     gtk_widget_set_tooltip_text(button, "Reset");
     gtk_container_add(GTK_CONTAINER (button), image);
     gtk_header_bar_pack_start(GTK_HEADER_BAR (gl_gui_components.gtk_header_bar), button);
-    //g_signal_connect (button, "clicked", G_CALLBACK(test), NULL);
+    g_signal_connect (button, "clicked", G_CALLBACK(gui_callback_header_bar_reset_cpu), NULL);
 
     button = gtk_button_new();
     icon   = g_themed_icon_new("open-menu-symbolic");

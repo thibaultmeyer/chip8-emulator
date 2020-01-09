@@ -23,7 +23,7 @@ typedef struct s_chip8_cpu {
     uint16_t pc;
     uint16_t current_opcode;
     uint8_t  keyboard[CHIP8_KEYBOARD_MAX_KEY];
-    uint8_t  video[CHIP8_VIDEO_SIZE];
+    uint8_t  video[CHIP8_VIDEO_DIM_HEIGHT][CHIP8_VIDEO_DIM_WIDTH];
 } s_chip8_cpu;
 
 typedef struct s_chip8_mask {
@@ -47,6 +47,13 @@ s_chip8_mask gl_chip8_mask;
  * @param cpu Handle to the chip8 CPU instance
  */
 void chip8_do_next(s_chip8_cpu *cpu);
+
+/**
+ * Show operation code error.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ */
+void chip8_error_opcode(s_chip8_cpu *cpu);
 
 /**
  * Free an existing chip8 CPU.

@@ -8,8 +8,10 @@
 typedef struct s_gui_components {
     GtkWidget    *gtk_window;
     GtkWidget    *gtk_header_bar;
+    SDL_Window   *sdl_window;
     SDL_Renderer *sdl_renderer;
     s_chip8_cpu  *chip8_cpu;
+    uint32_t     chip8_screen_pixel_ratio;
 } s_gui_components;
 
 s_gui_components gl_gui_components;
@@ -23,12 +25,29 @@ s_gui_components gl_gui_components;
 void gui_callback_app_activate(GtkApplication *app, gpointer user_data);
 
 /**
+ * Callback. New drawing area dimension via the allocation struct info.
+ *
+ * @param app Widget instance
+ * @param allocation Allocation information
+ * @param user_data custom user data
+ */
+void gui_callback_drawing_area_new_size(GtkWidget *widget, GtkAllocation *allocation, void *data);
+
+/**
  * Callback. Load a ROM.
  *
  * @param app GTK application instance
  * @param user_data custom user data
  */
 void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data);
+
+/**
+ * Callback. Reset chip8 CPU.
+ *
+ * @param app GTK application instance
+ * @param user_data custom user data
+ */
+void gui_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_data);
 
 /**
  * Callback. Render Chip8 video memory on screen.

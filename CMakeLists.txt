@@ -22,6 +22,7 @@ ADD_EXECUTABLE(
         src/main.c
         src/chip8/chip8.h
         src/chip8/chip8_do_next.c
+        src/chip8/chip8_error_opcode.c
         src/chip8/chip8_free_cpu.c
         src/chip8/chip8_get_offset_instruction.c
         src/chip8/chip8_get_opcode.c
@@ -66,7 +67,9 @@ ADD_EXECUTABLE(
         src/chip8/chip8_instruction_fx65.c
         src/gui/gui.h
         src/gui/gui_callback_app_activate.c
+        src/gui/gui_callback_drawing_area_new_size.c
         src/gui/gui_callback_header_bar_load_rom.c
+        src/gui/gui_callback_header_bar_reset_cpu.c
         src/gui/gui_callback_sdl_render_screen.c
         src/gui/gui_initialize_header_bar.c
         src/gui/gui_initialize_main_window.c

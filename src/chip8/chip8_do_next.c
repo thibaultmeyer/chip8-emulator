@@ -115,6 +115,8 @@ void chip8_do_next(s_chip8_cpu *cpu) {
             case 34:
                 chip8_instruction_fx65(cpu, b1, b2, b3);
                 break;
+            default:
+                chip8_error_opcode(cpu);
         }
 
         cpu->pc += 2;
