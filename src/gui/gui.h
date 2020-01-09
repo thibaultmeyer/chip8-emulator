@@ -3,15 +3,15 @@
 
 # include "../chip8/chip8.h"
 # include <gtk/gtk.h>
-# include <SDL.h>
 
 typedef struct s_gui_components {
-    GtkWidget    *gtk_window;
-    GtkWidget    *gtk_header_bar;
-    SDL_Window   *sdl_window;
-    SDL_Renderer *sdl_renderer;
-    s_chip8_cpu  *chip8_cpu;
-    uint32_t     chip8_screen_pixel_ratio;
+    GtkWidget   *gtk_window;
+    GtkWidget   *gtk_header_bar;
+    GtkWidget   *gtk_drawing_area;
+    s_chip8_cpu *chip8_cpu;
+    uint32_t    chip8_screen_width;
+    uint32_t    chip8_screen_height;
+    uint32_t    chip8_screen_pixel_ratio;
 } s_gui_components;
 
 s_gui_components gl_gui_components;
@@ -25,7 +25,16 @@ s_gui_components gl_gui_components;
 void gui_callback_app_activate(GtkApplication *app, gpointer user_data);
 
 /**
- * Callback. New drawing area dimension via the allocation struct info.
+ * Callback. Drawing area "draw".
+ *
+ * @param app Widget instance
+ * @param allocation Allocation information
+ * @param user_data custom user data
+ */
+gboolean gui_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *data);
+
+/**
+ * Callback. Drawing area dimension changed.
  *
  * @param app Widget instance
  * @param allocation Allocation information
@@ -50,11 +59,11 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data);
 void gui_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_data);
 
 /**
- * Callback. Render Chip8 video memory on screen.
+ * Callback. Run the next chip8 CPU instruction.
  *
  * @return TRUE if callback need to be call again
  */
-gboolean gui_callback_sdl_render_screen();
+gboolean gui_callback_chip8_tick();
 
 /**
  * Initialize the header bar.
