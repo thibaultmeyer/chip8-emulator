@@ -2,9 +2,9 @@
 #include "chip8.h"
 
 void chip8_error_opcode(s_chip8_cpu *cpu) {
-    uint16_t i;
-
     if (cpu) {
+        uint16_t i = 0;
+
         printf("====== DEBUG LOG ======\n");
         printf("OPCODE : 0x%X\n", cpu->current_opcode);
         printf("PC     : %d\n", cpu->pc);

@@ -1,4 +1,3 @@
-#include <gdk/gdkx.h>
 #include "gui.h"
 
 void gui_initialize_main_window(GtkApplication *app) {
