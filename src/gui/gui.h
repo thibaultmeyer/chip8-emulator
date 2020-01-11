@@ -8,7 +8,9 @@ typedef struct s_gui_components {
     GtkWidget   *gtk_window;
     GtkWidget   *gtk_header_bar;
     GtkWidget   *gtk_drawing_area;
+    guint       gtk_timer_cpu;
     s_chip8_cpu *chip8_cpu;
+    uint16_t    chip8_frequency;
     uint32_t    chip8_screen_width;
     uint32_t    chip8_screen_height;
     uint32_t    chip8_screen_pixel_ratio;

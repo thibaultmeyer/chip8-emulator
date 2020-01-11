@@ -24,6 +24,7 @@ typedef struct s_chip8_cpu {
     uint16_t current_opcode;
     uint8_t  keyboard[CHIP8_KEYBOARD_MAX_KEY];
     uint8_t  video[CHIP8_VIDEO_DIM_HEIGHT][CHIP8_VIDEO_DIM_WIDTH];
+    uint8_t  draw;
 } s_chip8_cpu;
 
 typedef struct s_chip8_mask {

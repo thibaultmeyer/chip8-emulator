@@ -12,10 +12,10 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
                                                     GTK_RESPONSE_ACCEPT,
                                                     NULL);
 
-    gint res = gtk_dialog_run(GTK_DIALOG (dialog));
+    gint res = gtk_dialog_run(GTK_DIALOG(dialog));
     if (res == GTK_RESPONSE_ACCEPT) {
         // Retrieve selected filename
-        GtkFileChooser *chooser  = GTK_FILE_CHOOSER (dialog);
+        GtkFileChooser *chooser  = GTK_FILE_CHOOSER(dialog);
         char           *filename = gtk_file_chooser_get_filename(chooser);
 
         // Destroy file chooser dialog
@@ -35,7 +35,7 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
                                                           GTK_MESSAGE_ERROR,
                                                           GTK_BUTTONS_CLOSE,
                                                           "Not a valid ROM file");
-                gtk_dialog_run(GTK_DIALOG (error_msg_dialog));
+                gtk_dialog_run(GTK_DIALOG(error_msg_dialog));
                 gtk_widget_destroy(error_msg_dialog);
                 free(cpu);
                 break;
@@ -46,7 +46,7 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
                                                           GTK_MESSAGE_ERROR,
                                                           GTK_BUTTONS_CLOSE,
                                                           "ROM file is too big");
-                gtk_dialog_run(GTK_DIALOG (error_msg_dialog));
+                gtk_dialog_run(GTK_DIALOG(error_msg_dialog));
                 gtk_widget_destroy(error_msg_dialog);
                 free(cpu);
                 break;
@@ -57,7 +57,7 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
                                                           GTK_MESSAGE_ERROR,
                                                           GTK_BUTTONS_CLOSE,
                                                           "Can't open ROM file");
-                gtk_dialog_run(GTK_DIALOG (error_msg_dialog));
+                gtk_dialog_run(GTK_DIALOG(error_msg_dialog));
                 gtk_widget_destroy(error_msg_dialog);
                 free(cpu);
                 break;
@@ -68,7 +68,7 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
                                                           GTK_MESSAGE_ERROR,
                                                           GTK_BUTTONS_CLOSE,
                                                           "Cannot read the whole ROM file");
-                gtk_dialog_run(GTK_DIALOG (error_msg_dialog));
+                gtk_dialog_run(GTK_DIALOG(error_msg_dialog));
                 gtk_widget_destroy(error_msg_dialog);
                 free(cpu);
                 break;

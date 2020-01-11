@@ -3,7 +3,6 @@
 
 void chip8_reset(s_chip8_cpu *cpu) {
     if (cpu) {
-        memset(cpu->memory, 0x00, CHIP8_MEMORY_SIZE);
         memset(cpu->video, 0x00, CHIP8_VIDEO_SIZE);
         memset(cpu->reg, 0x00, CHIP8_NB_REGISTER);
         memset(cpu->mem_jump, 0x00, CHIP8_MAX_JUMP);

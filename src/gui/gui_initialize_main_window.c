@@ -1,6 +1,7 @@
 #include "gui.h"
 
 void gui_initialize_main_window(GtkApplication *app) {
+    gl_gui_components.chip8_frequency          = 500;
     gl_gui_components.chip8_screen_pixel_ratio = 10;
     gl_gui_components.chip8_screen_width       = 640;
     gl_gui_components.chip8_screen_height      = 320;
@@ -26,5 +27,7 @@ void gui_initialize_main_window(GtkApplication *app) {
                       G_CALLBACK(gui_callback_drawing_area_draw),
                       NULL);
 
-    g_timeout_add(2, gui_callback_chip8_tick, 0);
+    gl_gui_components.gtk_timer_cpu = g_timeout_add(1000 / gl_gui_components.chip8_frequency,
+                                                    gui_callback_chip8_tick,
+                                                    0);
 }

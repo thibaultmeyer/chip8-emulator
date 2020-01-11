@@ -26,4 +26,8 @@ inline void chip8_instruction_dxyn(s_chip8_cpu *cpu, uint8_t b1, uint8_t b2, uin
             }
         }
     }
+
+    // Not part of the real chip8 CPU. It is just a flag to
+    // tell the GUI that it can redraw the display
+    cpu->draw = 1;
 }
