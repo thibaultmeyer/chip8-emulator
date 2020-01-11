@@ -6,7 +6,6 @@ void gui_initialize_header_bar(void) {
     gtk_header_bar_set_title(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), "Chip8 Emulator");
     gtk_header_bar_set_subtitle(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), "no ROM loaded");
 
-
     GtkWidget *button = gtk_button_new();
     GIcon     *icon   = g_themed_icon_new("document-open");
     GtkWidget *image  = gtk_image_new_from_gicon(icon, GTK_ICON_SIZE_BUTTON);

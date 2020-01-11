@@ -61,6 +61,14 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data);
 void gui_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_data);
 
 /**
+ * Callback. Main windows is destroyed.
+ *
+ * @param app GTK application instance
+ * @param user_data custom user data
+ */
+void gui_callback_window_destroy(GtkWidget *widget, gpointer data);
+
+/**
  * Callback. Run the next chip8 CPU instruction.
  *
  * @return TRUE if callback need to be call again

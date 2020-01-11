@@ -71,6 +71,7 @@ ADD_EXECUTABLE(
         src/gui/gui_callback_drawing_area_new_size.c
         src/gui/gui_callback_header_bar_load_rom.c
         src/gui/gui_callback_header_bar_reset_cpu.c
+        src/gui/gui_callback_window_destroy.c
         src/gui/gui_initialize_header_bar.c
         src/gui/gui_initialize_main_window.c
 )
