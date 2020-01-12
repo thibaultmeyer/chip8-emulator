@@ -1,4 +1,5 @@
 #include "gui.h"
+#include "gui_image_logo.h"
 #include "version.h"
 
 void gui_initialize_main_window(GtkApplication *app) {
@@ -15,6 +16,8 @@ void gui_initialize_main_window(GtkApplication *app) {
                                 gl_gui_components.chip8_screen_width,
                                 gl_gui_components.chip8_screen_height);
     gtk_window_set_titlebar(GTK_WINDOW (gl_gui_components.gtk_window), gl_gui_components.gtk_header_bar);
+    GdkPixbuf *app_logo = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 256, 256);
+    gtk_window_set_icon(GTK_WINDOW(gl_gui_components.gtk_window), app_logo);
     gtk_widget_show_all(gl_gui_components.gtk_window);
 
     g_signal_connect(gl_gui_components.gtk_window, "destroy", G_CALLBACK(gui_callback_window_destroy), NULL);
