@@ -199,6 +199,7 @@ void chip8_initialize(s_chip8_cpu *cpu) {
         cpu->counter_sound  = 0;
         cpu->pc             = CHIP8_MEMORY_ROM_START;
         cpu->current_opcode = 0x00;
+        cpu->draw           = 0;
 
         chip8_initialize_font(cpu);
         chip8_initialize_mask();

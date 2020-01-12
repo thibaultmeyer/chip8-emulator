@@ -2,4 +2,5 @@
 
 void gui_callback_window_destroy(GtkWidget *widget, gpointer data) {
     g_source_remove(gl_gui_components.gtk_timer_cpu);
+    g_source_remove(gl_gui_components.gtk_timer_counter);
 }

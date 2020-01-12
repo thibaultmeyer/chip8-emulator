@@ -75,7 +75,8 @@ ADD_EXECUTABLE(
         src/gui/gui_image_reset_cpu_light.h
         src/gui/version.h
         src/gui/gui_callback_app_activate.c
-        src/gui/gui_callback_chip8_tick.c
+        src/gui/gui_callback_chip8_tick_counter.c
+        src/gui/gui_callback_chip8_tick_cpu.c
         src/gui/gui_callback_drawing_area_draw.c
         src/gui/gui_callback_drawing_area_new_size.c
         src/gui/gui_callback_header_bar_load_rom.c

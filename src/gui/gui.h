@@ -9,6 +9,7 @@ typedef struct s_gui_components {
     GtkWidget   *gtk_header_bar;
     GtkWidget   *gtk_drawing_area;
     guint       gtk_timer_cpu;
+    guint       gtk_timer_counter;
     s_chip8_cpu *chip8_cpu;
     uint16_t    chip8_frequency;
     uint32_t    chip8_screen_width;
@@ -27,11 +28,19 @@ s_gui_components gl_gui_components;
 void gui_callback_app_activate(GtkApplication *app, gpointer user_data);
 
 /**
+ * Callback. Update counter.
+ *
+ * @param app GTK application instance
+ * @param user_data custom user data
+ */
+gboolean gui_callback_chip8_tick_counter();
+
+/**
  * Callback. Run the next chip8 CPU instruction.
  *
  * @return TRUE if callback need to be call again
  */
-gboolean gui_callback_chip8_tick();
+gboolean gui_callback_chip8_tick_cpu();
 
 /**
  * Callback. Drawing area "draw".
