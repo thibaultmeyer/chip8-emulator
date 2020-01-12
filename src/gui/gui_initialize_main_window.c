@@ -1,4 +1,5 @@
 #include "gui.h"
+#include "version.h"
 
 void gui_initialize_main_window(GtkApplication *app) {
     // Initialize default value
@@ -9,7 +10,7 @@ void gui_initialize_main_window(GtkApplication *app) {
 
     // Create main window
     gl_gui_components.gtk_window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(gl_gui_components.gtk_window), "Chip8 Emulator");
+    gtk_window_set_title(GTK_WINDOW(gl_gui_components.gtk_window), CHIP8EMU_APPNAME);
     gtk_window_set_default_size(GTK_WINDOW(gl_gui_components.gtk_window),
                                 gl_gui_components.chip8_screen_width,
                                 gl_gui_components.chip8_screen_height);
