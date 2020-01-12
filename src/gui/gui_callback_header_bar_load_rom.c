@@ -2,21 +2,23 @@
 #include "gui.h"
 
 void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
-    // Open a file chooser dialog
-    GtkWidget     *dialog = gtk_file_chooser_dialog_new("Load a ROM",
-                                                        GTK_WINDOW(gl_gui_components.gtk_window),
-                                                        GTK_FILE_CHOOSER_ACTION_OPEN,
-                                                        gettext("_Cancel"),
-                                                        GTK_RESPONSE_CANCEL,
-                                                        gettext("_Open"),
-                                                        GTK_RESPONSE_ACCEPT,
-                                                        NULL);
+    // Create a file chooser dialog
+    GtkWidget *dialog = gtk_file_chooser_dialog_new("Load a ROM",
+                                                    GTK_WINDOW(gl_gui_components.gtk_window),
+                                                    GTK_FILE_CHOOSER_ACTION_OPEN,
+                                                    gettext("_Cancel"),
+                                                    GTK_RESPONSE_CANCEL,
+                                                    gettext("_Open"),
+                                                    GTK_RESPONSE_ACCEPT,
+                                                    NULL);
+
+    // Defines file filter
     GtkFileFilter *filter = gtk_file_filter_new();
+    gtk_file_filter_set_name(GTK_FILE_FILTER(filter), "Chip8 ROM");
+    gtk_file_filter_add_pattern(GTK_FILE_FILTER(filter), "*.ch8");
+    gtk_file_chooser_set_filter(GTK_FILE_CHOOSER(dialog), filter);
 
-    gtk_file_filter_set_name(filter, "Chip8 ROM");
-    gtk_file_filter_add_pattern(filter, "*.ch8");
-    gtk_file_chooser_set_filter(dialog, filter);
-
+    // Open dialog
     gint res = gtk_dialog_run(GTK_DIALOG(dialog));
     if (res == GTK_RESPONSE_ACCEPT) {
         // Retrieve selected filename

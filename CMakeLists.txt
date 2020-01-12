@@ -65,6 +65,9 @@ ADD_EXECUTABLE(
         src/chip8/chip8_instruction_fx55.c
         src/chip8/chip8_instruction_fx65.c
         src/gui/gui.h
+        src/gui/gui_icon_load_rom.h
+        src/gui/gui_icon_reset_cpu.h
+        src/gui/gui_icon_settings.h
         src/gui/gui_callback_app_activate.c
         src/gui/gui_callback_chip8_tick.c
         src/gui/gui_callback_drawing_area_draw.c

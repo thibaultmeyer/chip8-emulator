@@ -19,7 +19,7 @@ typedef struct s_gui_components {
 s_gui_components gl_gui_components;
 
 /**
- * Callback. Configure main windows when activated. Only call once.
+ * Callback. Configure main window when activated. Only call once.
  *
  * @param app GTK application instance
  * @param user_data custom user data
@@ -61,7 +61,7 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data);
 void gui_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_data);
 
 /**
- * Callback. Main windows is destroyed.
+ * Callback. Main window is destroyed.
  *
  * @param app GTK application instance
  * @param user_data custom user data
