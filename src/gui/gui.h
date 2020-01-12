@@ -84,6 +84,14 @@ void gui_callback_menu_more_about(GtkApplication *app, gpointer user_data);
 void gui_callback_window_destroy(GtkWidget *widget, gpointer data);
 
 /**
+ * Callback. A key has been pressed or released.
+ *
+ * @param app GTK application instance
+ * @param user_data custom user data
+ */
+gboolean gui_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer data);
+
+/**
  * Load image from memory and scale it.
  *
  * @param data Image data

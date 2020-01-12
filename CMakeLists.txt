@@ -2,6 +2,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 3.15)
 PROJECT(chip8emu C)
 
 SET(CMAKE_C_STANDARD 99)
+SET(CMAKE_C_FLAGS "-Wall")
 
 # Use the package PkgConfig to detect GTK+ headers/library files
 FIND_PACKAGE(PkgConfig REQUIRED)
@@ -78,6 +79,7 @@ ADD_EXECUTABLE(
         src/gui/gui_callback_header_bar_reset_cpu.c
         src/gui/gui_callback_menu_more_about.c
         src/gui/gui_callback_window_destroy.c
+        src/gui/gui_callback_window_key.c
         src/gui/gui_image_load_from_memory_scale.c
         src/gui/gui_initialize_header_bar.c
         src/gui/gui_initialize_main_window.c)

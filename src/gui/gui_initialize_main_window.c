@@ -18,6 +18,8 @@ void gui_initialize_main_window(GtkApplication *app) {
     gtk_widget_show_all(gl_gui_components.gtk_window);
 
     g_signal_connect(gl_gui_components.gtk_window, "destroy", G_CALLBACK(gui_callback_window_destroy), NULL);
+    g_signal_connect(gl_gui_components.gtk_window, "key_press_event", G_CALLBACK(gui_callback_window_key), NULL);
+    g_signal_connect(gl_gui_components.gtk_window, "key_release_event", G_CALLBACK(gui_callback_window_key), NULL);
 
     // Create drawing area
     gl_gui_components.gtk_drawing_area = gtk_drawing_area_new();
