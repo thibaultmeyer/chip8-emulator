@@ -66,10 +66,13 @@ ADD_EXECUTABLE(
         src/chip8/chip8_instruction_fx55.c
         src/chip8/chip8_instruction_fx65.c
         src/gui/gui.h
-        src/gui/gui_image_load_rom.h
+        src/gui/gui_image_load_rom_dark.h
+        src/gui/gui_image_load_rom_light.h
         src/gui/gui_image_logo.h
-        src/gui/gui_image_more.h
-        src/gui/gui_image_reset_cpu.h
+        src/gui/gui_image_more_dark.h
+        src/gui/gui_image_more_light.h
+        src/gui/gui_image_reset_cpu_dark.h
+        src/gui/gui_image_reset_cpu_light.h
         src/gui/version.h
         src/gui/gui_callback_app_activate.c
         src/gui/gui_callback_chip8_tick.c
@@ -82,7 +85,8 @@ ADD_EXECUTABLE(
         src/gui/gui_callback_window_key.c
         src/gui/gui_image_load_from_memory_scale.c
         src/gui/gui_initialize_header_bar.c
-        src/gui/gui_initialize_main_window.c)
+        src/gui/gui_initialize_main_window.c
+        src/gui/gui_toolbox_is_gtk_dark_theme_enabled)
 
 # Link the target to the GTK+ libraries
 TARGET_LINK_LIBRARIES(chip8emu ${GTK3_LIBRARIES})

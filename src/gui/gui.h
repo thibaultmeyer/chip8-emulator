@@ -114,4 +114,11 @@ void gui_initialize_header_bar(void);
  */
 void gui_initialize_main_window(GtkApplication *app);
 
+/**
+ * Check if a GTK dark theme is currently in use.
+ *
+ * @return true if the current GTK theme is dark
+ */
+gboolean gui_toolbox_is_gtk_dark_theme_enabled(void);
+
 #endif //CHIP8EMU_GUI_H
