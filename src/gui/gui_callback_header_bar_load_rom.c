@@ -1,4 +1,5 @@
 #include <libintl.h>
+#include <stdlib.h>
 #include "gui.h"
 
 void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {

@@ -23,7 +23,7 @@ gboolean gui_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *da
             }
         }
     } else {
-        cairo_rectangle(cr, 0, 0, 640, 320);
+        cairo_rectangle(cr, 0, 0, gl_gui_components.chip8_screen_width, gl_gui_components.chip8_screen_height);
         gdk_cairo_set_source_rgba(cr, &color_black);
         cairo_fill(cr);
     }

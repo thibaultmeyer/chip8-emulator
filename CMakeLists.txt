@@ -18,7 +18,7 @@ ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER})
 
 # Files
 ADD_EXECUTABLE(
-        chip8emu
+        chip8emu WIN32
         src/main.c
         src/chip8/chip8.h
         src/chip8/chip8_do_next.c
