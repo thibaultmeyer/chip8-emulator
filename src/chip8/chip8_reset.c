@@ -14,6 +14,6 @@ void chip8_reset(s_chip8_cpu *cpu) {
         cpu->counter_sound  = 0;
         cpu->pc             = CHIP8_MEMORY_ROM_START;
         cpu->current_opcode = 0x00;
-        cpu->draw           = 0;
+        cpu->draw           = 1;
     }
 }
