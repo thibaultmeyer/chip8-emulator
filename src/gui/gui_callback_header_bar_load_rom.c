@@ -89,7 +89,9 @@ void gui_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
                 gl_gui_components.chip8_cpu = cpu;
 
                 // Update UI
-                gtk_header_bar_set_subtitle(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), filename);
+                gchar *basename = g_filename_display_basename(filename);
+                gtk_header_bar_set_subtitle(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), basename);
+                g_free(basename);
                 break;
         }
 
