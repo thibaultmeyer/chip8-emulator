@@ -101,6 +101,17 @@ void gui_callback_window_destroy(GtkWidget *widget, gpointer data);
 gboolean gui_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer data);
 
 /**
+ * Stop all emulation timers. If all timers are
+ * stopped, emulation will be in "pause" state.
+ */
+void gui_emulation_timer_stop();
+
+/**
+ * Start all emulation timers.
+ */
+void gui_emulation_timer_start();
+
+/**
  * Load image from memory and scale it.
  *
  * @param data Image data

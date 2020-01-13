@@ -84,6 +84,8 @@ ADD_EXECUTABLE(
         src/gui/gui_callback_menu_more_about.c
         src/gui/gui_callback_window_destroy.c
         src/gui/gui_callback_window_key.c
+        src/gui/gui_emulation_timer_start.c
+        src/gui/gui_emulation_timer_stop.c
         src/gui/gui_image_load_from_memory_scale.c
         src/gui/gui_initialize_header_bar.c
         src/gui/gui_initialize_main_window.c
