@@ -52,6 +52,8 @@ gboolean gui_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer
             case GDK_KEY_v:
                 gl_gui_components.chip8_cpu->keyboard[15] = value;
                 break;
+            default:
+                break;
         }
     }
 
