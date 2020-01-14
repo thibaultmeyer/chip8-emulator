@@ -1,15 +1,12 @@
 #include "gui.h"
 
 gboolean gui_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *data) {
-    GdkRGBA color_black = {0, 0, 0, 255};
-    GdkRGBA color_white = {255, 255, 255, 255};
-
     if (gl_gui_components.chip8_cpu) {
-        gdk_cairo_set_source_rgba(cr, &color_black);
+        gdk_cairo_set_source_rgba(cr, &gl_gui_settings.color_background);
         cairo_rectangle(cr, 0, 0, gl_gui_components.chip8_screen_width, gl_gui_components.chip8_screen_height);
         cairo_fill(cr);
 
-        gdk_cairo_set_source_rgba(cr, &color_white);
+        gdk_cairo_set_source_rgba(cr, &gl_gui_settings.color_foreground);
         for (uint8_t y = 0; y < CHIP8_VIDEO_DIM_HEIGHT; ++y) {
             for (uint8_t x = 0; x < CHIP8_VIDEO_DIM_WIDTH; ++x) {
                 if (gl_gui_components.chip8_cpu->video[y][x] == 1) {
@@ -24,7 +21,7 @@ gboolean gui_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *da
         }
     } else {
         cairo_rectangle(cr, 0, 0, gl_gui_components.chip8_screen_width, gl_gui_components.chip8_screen_height);
-        gdk_cairo_set_source_rgba(cr, &color_black);
+        gdk_cairo_set_source_rgba(cr, &gl_gui_settings.color_background);
         cairo_fill(cr);
     }
 

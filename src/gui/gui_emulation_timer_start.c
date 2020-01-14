@@ -3,7 +3,7 @@
 void gui_emulation_timer_start() {
     // Start "cpu" timer
     if (gl_gui_components.gtk_timer_cpu == 0) {
-        gl_gui_components.gtk_timer_cpu = g_timeout_add(1000 / gl_gui_components.chip8_frequency,
+        gl_gui_components.gtk_timer_cpu = g_timeout_add(1000 / gl_gui_settings.cpu_frequency,
                                                         G_SOURCE_FUNC(gui_callback_chip8_tick_cpu),
                                                         NULL);
     }

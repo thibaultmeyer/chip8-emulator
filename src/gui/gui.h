@@ -11,13 +11,32 @@ typedef struct s_gui_components {
     guint       gtk_timer_cpu;
     guint       gtk_timer_counter;
     s_chip8_cpu *chip8_cpu;
-    uint16_t    chip8_frequency;
     uint32_t    chip8_screen_width;
     uint32_t    chip8_screen_height;
     uint32_t    chip8_screen_pixel_ratio;
 } s_gui_components;
 
+typedef struct s_gui_settings {
+    uint32_t cpu_frequency;
+    uint32_t display_mode;
+    GdkRGBA  color_background;
+    GdkRGBA  color_foreground;
+} s_gui_settings;
+
+typedef struct s_gui_settings_combobox_value {
+    uint32_t   key;
+    const char *value;
+} s_gui_settings_combobox_value;
+
+/**
+ * Handle to the gui components.
+ */
 s_gui_components gl_gui_components;
+
+/**
+ * Handle to the gui settings.
+ */
+s_gui_settings gl_gui_settings;
 
 /**
  * Callback. Configure main window when activated. Only call once.
@@ -85,6 +104,14 @@ void gui_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_data);
 void gui_callback_menu_more_about(GtkApplication *app, gpointer user_data);
 
 /**
+ * Callback. Show "settings" dialog.
+ *
+ * @param app GTK application instance
+ * @param user_data custom user data
+ */
+void gui_callback_menu_more_settings(GtkApplication *app, gpointer user_data);
+
+/**
  * Callback. Main window is destroyed.
  *
  * @param app GTK application instance
@@ -127,7 +154,7 @@ GdkPixbuf *gui_image_load_from_memory_scale(const unsigned char *data,
 /**
  * Initialize the header bar.
  */
-void gui_initialize_header_bar(void);
+void gui_initialize_main_header_bar(void);
 
 /**
  * Initialize the main window.
@@ -135,10 +162,84 @@ void gui_initialize_header_bar(void);
 void gui_initialize_main_window(GtkApplication *app);
 
 /**
+ * Settings - Callback - Set the background color.
+ *
+ * @param widget Handle to the GTK color button
+ * @param user_data custom user data
+ */
+void gui_settings_callback_colorbutton_background(GtkColorButton *widget, gpointer user_data);
+
+/**
+ * Settings - Callback - Set the foreground color.
+ *
+ * @param widget Handle to the GTK color button
+ * @param user_data custom user data
+ */
+void gui_settings_callback_colorbutton_foreground(GtkColorButton *widget, gpointer user_data);
+
+/**
+ * Settings - Callback - Set the CPU frequency.
+ *
+ * @param widget Handle to the combobox widget
+ * @param user_data custom user data
+ */
+void gui_settings_callback_combobox_cpu_frequency(GtkComboBox *widget, gpointer user_data);
+
+/**
+ * Initialize the settings window.
+ */
+void gui_settings_init(void);
+
+/**
+ * Initialize the settings window - Background Color
+ *
+ * @param fixed_container Container to place components
+ */
+void gui_settings_init_color_background(GtkFixed *fixed_container);
+
+/**
+ * Initialize the settings window - Foreground Color
+ *
+ * @param fixed_container Container to place components
+ */
+void gui_settings_init_color_foreground(GtkFixed *fixed_container);
+
+/**
+ * Initialize the settings window - CPU Frequency
+ *
+ * @param fixed_container Container to place components
+ */
+void gui_settings_init_cpu_frequency(GtkFixed *fixed_container);
+
+/**
+ * Initialize the settings window - Display Mode
+ *
+ * @param fixed_container Container to place components
+ */
+void gui_settings_init_display_mode(GtkFixed *fixed_container);
+
+/**
+ * Retrieves the settings filename.
+ *
+ * @return Settings filename
+ */
+gchar *gui_toolbox_get_settings_filename(void);
+
+/**
  * Check if a GTK dark theme is currently in use.
  *
  * @return true if the current GTK theme is dark
  */
 gboolean gui_toolbox_is_gtk_dark_theme_enabled(void);
+
+/**
+ * Load settings from file or use default values.
+ */
+void gui_toolbox_load_settings_from_file_or_default(void);
+
+/**
+ * Save settings to file.
+ */
+void gui_toolbox_save_settings_to_file(void);
 
 #endif //CHIP8EMU_GUI_H

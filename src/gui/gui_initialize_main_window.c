@@ -4,7 +4,6 @@
 
 void gui_initialize_main_window(GtkApplication *app) {
     // Initialize default value
-    gl_gui_components.chip8_frequency          = 500;  // Hz
     gl_gui_components.chip8_screen_width       = 640;
     gl_gui_components.chip8_screen_height      = 320;
     gl_gui_components.chip8_screen_pixel_ratio = 10;
@@ -15,9 +14,10 @@ void gui_initialize_main_window(GtkApplication *app) {
     gtk_window_set_default_size(GTK_WINDOW(gl_gui_components.gtk_window),
                                 gl_gui_components.chip8_screen_width,
                                 gl_gui_components.chip8_screen_height);
-    gtk_window_set_titlebar(GTK_WINDOW (gl_gui_components.gtk_window), gl_gui_components.gtk_header_bar);
-    GdkPixbuf *app_logo = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 256, 256);
-    gtk_window_set_icon(GTK_WINDOW(gl_gui_components.gtk_window), app_logo);
+    gtk_window_set_titlebar(GTK_WINDOW(gl_gui_components.gtk_window), gl_gui_components.gtk_header_bar);
+    GdkPixbuf *icon = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 256, 256);
+    gtk_window_set_icon(GTK_WINDOW(gl_gui_components.gtk_window), icon);
+    g_object_unref(icon);
     gtk_widget_show_all(gl_gui_components.gtk_window);
 
     g_signal_connect(gl_gui_components.gtk_window, "destroy", G_CALLBACK(gui_callback_window_destroy), NULL);
@@ -29,11 +29,11 @@ void gui_initialize_main_window(GtkApplication *app) {
     gtk_container_add(GTK_CONTAINER(gl_gui_components.gtk_window), gl_gui_components.gtk_drawing_area);
     gtk_widget_show_all(GTK_WIDGET(gl_gui_components.gtk_window));
 
-    g_signal_connect (gl_gui_components.gtk_drawing_area,
+    g_signal_connect(gl_gui_components.gtk_drawing_area,
                       "size-allocate",
                       G_CALLBACK(gui_callback_drawing_area_new_size),
                       NULL);
-    g_signal_connect (gl_gui_components.gtk_drawing_area,
+    g_signal_connect(gl_gui_components.gtk_drawing_area,
                       "draw",
                       G_CALLBACK(gui_callback_drawing_area_draw),
                       NULL);
