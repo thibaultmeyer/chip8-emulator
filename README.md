@@ -19,3 +19,9 @@ correctly installed.
 
 ## License
 This project is released under terms of the [MIT license](https://github.com/thibaultmeyer/chip8-emulator/blob/master/LICENSE).
+
+
+## Third party icons
+- Application icon is taken from the CHIP-8 ROM "Chip8 emulator Logo" by Garstyciuks.
+- Header icons are created by Google and published on [flaticon.com](https://www.flaticon.com/packs/material-design/2)
+under [CC 3.0 BY](https://creativecommons.org/licenses/by/3.0/).
