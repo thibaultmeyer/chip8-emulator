@@ -93,6 +93,7 @@ ADD_EXECUTABLE(
         src/gui/gui_settings_callback_colorbutton_background.c
         src/gui/gui_settings_callback_colorbutton_foreground.c
         src/gui/gui_settings_callback_combobox_cpu_frequency.c
+        src/gui/gui_settings_callback_window_destroy.c
         src/gui/gui_settings_init.c
         src/gui/gui_settings_init_color_background.c
         src/gui/gui_settings_init_color_foreground.c

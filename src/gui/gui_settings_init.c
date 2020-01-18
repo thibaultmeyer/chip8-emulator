@@ -19,7 +19,6 @@ void gui_settings_init() {
     // Window icon
     GdkPixbuf *icon = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 256, 256);
     gtk_window_set_icon(GTK_WINDOW(window), icon);
-    g_object_unref(icon);
 
     // Create fixed grid
     GtkWidget *fixed = gtk_fixed_new();
@@ -30,6 +29,15 @@ void gui_settings_init() {
     gui_settings_init_color_foreground(GTK_FIXED(fixed));
     gui_settings_init_cpu_frequency(GTK_FIXED(fixed));
     gui_settings_init_display_mode(GTK_FIXED(fixed));
+
+    // Mark some widget/object to be explicitly deleted when window will be destroyed
+    GSList *components = g_slist_alloc();
+    components = g_slist_append(components, header);
+    components = g_slist_append(components, fixed);
+    components = g_slist_append(components, icon);
+
+    // Connect signal
+    g_signal_connect(window, "destroy", G_CALLBACK(gui_settings_callback_window_destroy), components);
 
     // Show the window
     gtk_widget_show_all(window);

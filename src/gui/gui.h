@@ -186,6 +186,14 @@ void gui_settings_callback_colorbutton_foreground(GtkColorButton *widget, gpoint
 void gui_settings_callback_combobox_cpu_frequency(GtkComboBox *widget, gpointer user_data);
 
 /**
+ * Callback. Settings window is destroyed.
+ *
+ * @param app GTK application instance
+ * @param user_data custom user data
+ */
+void gui_settings_callback_window_destroy(GtkWidget *widget, gpointer data);
+
+/**
  * Initialize the settings window.
  */
 void gui_settings_init(void);

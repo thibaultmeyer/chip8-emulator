@@ -2,4 +2,5 @@
 
 void gui_callback_window_destroy(GtkWidget *widget, gpointer data) {
     gui_emulation_timer_stop();
+    gtk_widget_destroy(widget);
 }
