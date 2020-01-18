@@ -29,6 +29,7 @@ void gui_settings_init() {
     gui_settings_init_color_foreground(GTK_FIXED(fixed));
     gui_settings_init_cpu_frequency(GTK_FIXED(fixed));
     gui_settings_init_display_mode(GTK_FIXED(fixed));
+    gui_settings_init_key_binding(GTK_FIXED(fixed));
 
     // Mark some widget/object to be explicitly deleted when window will be destroyed
     GSList *components = g_slist_alloc();

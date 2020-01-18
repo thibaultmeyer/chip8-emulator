@@ -101,12 +101,14 @@ ADD_EXECUTABLE(
         src/gui/gui_settings_callback_colorbutton_background.c
         src/gui/gui_settings_callback_colorbutton_foreground.c
         src/gui/gui_settings_callback_combobox_cpu_frequency.c
+        src/gui/gui_settings_callback_input_key.c
         src/gui/gui_settings_callback_window_destroy.c
         src/gui/gui_settings_init.c
         src/gui/gui_settings_init_color_background.c
         src/gui/gui_settings_init_color_foreground.c
         src/gui/gui_settings_init_cpu_frequency.c
         src/gui/gui_settings_init_display_mode.c
+        src/gui/gui_settings_init_key_binding.c
         src/gui/gui_toolbox_get_settings_filename.c
         src/gui/gui_toolbox_is_gtk_dark_theme_enabled
         src/gui/gui_toolbox_load_settings_from_file_or_default.c

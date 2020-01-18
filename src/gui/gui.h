@@ -21,6 +21,7 @@ typedef struct s_gui_settings {
     uint32_t display_mode;
     GdkRGBA  color_background;
     GdkRGBA  color_foreground;
+    guint    keybinding[CHIP8_KEYBOARD_MAX_KEY];
 } s_gui_settings;
 
 typedef struct s_gui_settings_combobox_value {
@@ -66,7 +67,7 @@ GdkPixbuf *gui_image_load_from_memory_scale(const unsigned char *data,
  * Callback. Configure main window when activated. Only call once.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_main_callback_app_activate(GtkApplication *app, gpointer user_data);
 
@@ -74,7 +75,7 @@ void gui_main_callback_app_activate(GtkApplication *app, gpointer user_data);
  * Callback. Update counter.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 gboolean gui_main_callback_chip8_tick_counter();
 
@@ -90,7 +91,7 @@ gboolean gui_main_callback_chip8_tick_cpu();
  *
  * @param app Widget instance
  * @param allocation Allocation information
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 gboolean gui_main_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *data);
 
@@ -99,7 +100,7 @@ gboolean gui_main_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, voi
  *
  * @param app Widget instance
  * @param allocation Allocation information
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_main_callback_drawing_area_new_size(GtkWidget *widget, GtkAllocation *allocation, void *data);
 
@@ -107,7 +108,7 @@ void gui_main_callback_drawing_area_new_size(GtkWidget *widget, GtkAllocation *a
  * Callback. Load a ROM.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data);
 
@@ -115,7 +116,7 @@ void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_da
  * Callback. Reset chip8 CPU.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_main_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_data);
 
@@ -123,7 +124,7 @@ void gui_main_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_d
  * Callback. Show "about" dialog.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_main_callback_menu_more_about(GtkApplication *app, gpointer user_data);
 
@@ -131,7 +132,7 @@ void gui_main_callback_menu_more_about(GtkApplication *app, gpointer user_data);
  * Callback. Show "settings" dialog.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_main_callback_menu_more_settings(GtkApplication *app, gpointer user_data);
 
@@ -139,7 +140,7 @@ void gui_main_callback_menu_more_settings(GtkApplication *app, gpointer user_dat
  * Callback. Main window is destroyed.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_main_callback_window_destroy(GtkWidget *widget, gpointer data);
 
@@ -147,7 +148,7 @@ void gui_main_callback_window_destroy(GtkWidget *widget, gpointer data);
  * Callback. A key has been pressed or released.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 gboolean gui_main_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer data);
 
@@ -165,7 +166,7 @@ void gui_main_initialize_main_window(GtkApplication *app);
  * Settings - Callback - Set the background color.
  *
  * @param widget Handle to the GTK color button
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_settings_callback_colorbutton_background(GtkColorButton *widget, gpointer user_data);
 
@@ -173,7 +174,7 @@ void gui_settings_callback_colorbutton_background(GtkColorButton *widget, gpoint
  * Settings - Callback - Set the foreground color.
  *
  * @param widget Handle to the GTK color button
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_settings_callback_colorbutton_foreground(GtkColorButton *widget, gpointer user_data);
 
@@ -181,15 +182,23 @@ void gui_settings_callback_colorbutton_foreground(GtkColorButton *widget, gpoint
  * Settings - Callback - Set the CPU frequency.
  *
  * @param widget Handle to the combobox widget
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_settings_callback_combobox_cpu_frequency(GtkComboBox *widget, gpointer user_data);
+
+/**
+ * Settings - Callback - Set binding for a specific key.
+ *
+ * @param widget Handle to the GTK entry
+ * @param key_idx Index of the key to set
+ */
+void gui_settings_callback_input_key(GtkEntry *entry, uint32_t key_idx);
 
 /**
  * Callback. Settings window is destroyed.
  *
  * @param app GTK application instance
- * @param user_data custom user data
+ * @param user_data Custom user data
  */
 void gui_settings_callback_window_destroy(GtkWidget *widget, gpointer data);
 
@@ -199,32 +208,39 @@ void gui_settings_callback_window_destroy(GtkWidget *widget, gpointer data);
 void gui_settings_init(void);
 
 /**
- * Initialize the settings window - Background Color
+ * Initialize the settings window - Background Color.
  *
  * @param fixed_container Container to place components
  */
 void gui_settings_init_color_background(GtkFixed *fixed_container);
 
 /**
- * Initialize the settings window - Foreground Color
+ * Initialize the settings window - Foreground Color.
  *
  * @param fixed_container Container to place components
  */
 void gui_settings_init_color_foreground(GtkFixed *fixed_container);
 
 /**
- * Initialize the settings window - CPU Frequency
+ * Initialize the settings window - CPU Frequency.
  *
  * @param fixed_container Container to place components
  */
 void gui_settings_init_cpu_frequency(GtkFixed *fixed_container);
 
 /**
- * Initialize the settings window - Display Mode
+ * Initialize the settings window - Display Mode.
  *
  * @param fixed_container Container to place components
  */
 void gui_settings_init_display_mode(GtkFixed *fixed_container);
+
+/**
+ * Initialize the settings window - Key Binding.
+ *
+ * @param fixed_container Container to place components
+ */
+void gui_settings_init_key_binding(GtkFixed *fixed_container);
 
 /**
  * Retrieves the settings filename.
