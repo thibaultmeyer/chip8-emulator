@@ -78,7 +78,7 @@ void gui_main_initialize_main_header_bar(void) {
     // More menu: About
     GtkWidget *menu_item_about = gtk_menu_item_new_with_label("About");
     gtk_container_add(GTK_CONTAINER(menu_more), menu_item_about);
-    gtk_menu_attach(GTK_MENU(menu_more), menu_item_about, 0, 1, 1, 1);
+    gtk_menu_attach(GTK_MENU(menu_more), menu_item_about, 0, 1, 1, 2);
     g_signal_connect(menu_item_about, "activate", G_CALLBACK(gui_main_callback_menu_more_about), NULL);
 
     // More menu (Refresh)
