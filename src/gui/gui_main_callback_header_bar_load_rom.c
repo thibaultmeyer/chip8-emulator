@@ -82,6 +82,9 @@ void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_da
                 break;
             }
             default:
+                // Stop emulation
+                gui_emulation_timer_stop();
+
                 // Use newly created CPU instance
                 if (gl_gui_components.chip8_cpu) {
                     chip8_free_cpu(gl_gui_components.chip8_cpu);
@@ -92,6 +95,9 @@ void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_da
                 gchar *basename = g_filename_display_basename(filename);
                 gtk_header_bar_set_subtitle(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), basename);
                 g_free(basename);
+
+                // Start emulation
+                gui_emulation_timer_start();
                 break;
         }
 
