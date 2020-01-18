@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.15.3)
-PROJECT(chip8emu C)
+PROJECT(chip8-emulator C)
 
 SET(CMAKE_C_STANDARD 99)
 SET(CMAKE_C_FLAGS "-Wall")
@@ -26,7 +26,7 @@ ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER})
 
 # Files
 ADD_EXECUTABLE(
-        chip8emu WIN32
+        chip8-emulator WIN32
         src/main.c
         src/chip8/chip8.h
         src/chip8/chip8_do_next.c
@@ -114,8 +114,8 @@ ADD_EXECUTABLE(
         chip8-emulator.rc)
 
 # Link the target to the GTK+ libraries
-TARGET_LINK_LIBRARIES(chip8emu ${GTK3_LIBRARIES})
+TARGET_LINK_LIBRARIES(chip8-emulator ${GTK3_LIBRARIES})
 
 # Install
-INSTALL(TARGETS chip8emu
+INSTALL(TARGETS chip8-emulator
         DESTINATION bin)
