@@ -1,6 +1,6 @@
 #include "gui.h"
 #include "gui_image_logo.h"
-#include "version.h"
+#include "../version.h"
 
 void gui_main_initialize_main_window(GtkApplication *app) {
     // Initialize default value

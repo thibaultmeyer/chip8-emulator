@@ -5,7 +5,7 @@
 #include "gui_image_reset_cpu_light.h"
 #include "gui_image_more_dark.h"
 #include "gui_image_more_light.h"
-#include "version.h"
+#include "../version.h"
 
 void gui_main_initialize_main_header_bar(void) {
     // Header bar

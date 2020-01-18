@@ -1,8 +1,16 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.10.2)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.15.3)
 PROJECT(chip8emu C)
 
 SET(CMAKE_C_STANDARD 99)
 SET(CMAKE_C_FLAGS "-Wall")
+
+# Configure windres: don't use flags
+IF (MINGW)
+    SET(CMAKE_RC_COMPILER_INIT windres)
+    ENABLE_LANGUAGE(RC)
+    SET(CMAKE_RC_COMPILE_OBJECT
+            "<CMAKE_RC_COMPILER> -O coff <DEFINES> -i <SOURCE> -o <OBJECT>")
+ENDIF (MINGW)
 
 # Use the package PkgConfig to detect GTK+ headers/library files
 FIND_PACKAGE(PkgConfig REQUIRED)
@@ -66,7 +74,7 @@ ADD_EXECUTABLE(
         src/chip8/chip8_instruction_fx55.c
         src/chip8/chip8_instruction_fx65.c
         src/gui/gui.h
-        src/gui/version.h
+        src/version.h
         src/gui/gui_image_load_rom_dark.h
         src/gui/gui_image_load_rom_light.h
         src/gui/gui_image_logo.h
@@ -102,7 +110,8 @@ ADD_EXECUTABLE(
         src/gui/gui_toolbox_get_settings_filename.c
         src/gui/gui_toolbox_is_gtk_dark_theme_enabled
         src/gui/gui_toolbox_load_settings_from_file_or_default.c
-        src/gui/gui_toolbox_save_settings_to_file.c)
+        src/gui/gui_toolbox_save_settings_to_file.c
+        chip8-emulator.rc)
 
 # Link the target to the GTK+ libraries
 TARGET_LINK_LIBRARIES(chip8emu ${GTK3_LIBRARIES})

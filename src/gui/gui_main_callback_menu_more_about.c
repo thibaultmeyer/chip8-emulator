@@ -1,6 +1,6 @@
 #include "gui.h"
 #include "gui_image_logo.h"
-#include "version.h"
+#include "../version.h"
 
 void gui_main_callback_menu_more_about(GtkApplication *app, gpointer user_data) {
     GdkPixbuf *pixbuf = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 64, 64);
