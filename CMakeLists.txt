@@ -66,6 +66,7 @@ ADD_EXECUTABLE(
         src/chip8/chip8_instruction_fx55.c
         src/chip8/chip8_instruction_fx65.c
         src/gui/gui.h
+        src/gui/version.h
         src/gui/gui_image_load_rom_dark.h
         src/gui/gui_image_load_rom_light.h
         src/gui/gui_image_logo.h
@@ -73,23 +74,22 @@ ADD_EXECUTABLE(
         src/gui/gui_image_more_light.h
         src/gui/gui_image_reset_cpu_dark.h
         src/gui/gui_image_reset_cpu_light.h
-        src/gui/version.h
-        src/gui/gui_callback_app_activate.c
-        src/gui/gui_callback_chip8_tick_counter.c
-        src/gui/gui_callback_chip8_tick_cpu.c
-        src/gui/gui_callback_drawing_area_draw.c
-        src/gui/gui_callback_drawing_area_new_size.c
-        src/gui/gui_callback_header_bar_load_rom.c
-        src/gui/gui_callback_header_bar_reset_cpu.c
-        src/gui/gui_callback_menu_more_about.c
-        src/gui/gui_callback_menu_more_settings.c
-        src/gui/gui_callback_window_destroy.c
-        src/gui/gui_callback_window_key.c
         src/gui/gui_emulation_timer_start.c
         src/gui/gui_emulation_timer_stop.c
         src/gui/gui_image_load_from_memory_scale.c
-        src/gui/gui_initialize_main_header_bar.c
-        src/gui/gui_initialize_main_window.c
+        src/gui/gui_main_callback_app_activate.c
+        src/gui/gui_main_callback_chip8_tick_counter.c
+        src/gui/gui_main_callback_chip8_tick_cpu.c
+        src/gui/gui_main_callback_drawing_area_draw.c
+        src/gui/gui_main_callback_drawing_area_new_size.c
+        src/gui/gui_main_callback_header_bar_load_rom.c
+        src/gui/gui_main_callback_header_bar_reset_cpu.c
+        src/gui/gui_main_callback_menu_more_about.c
+        src/gui/gui_main_callback_menu_more_settings.c
+        src/gui/gui_main_callback_window_destroy.c
+        src/gui/gui_main_callback_window_key.c
+        src/gui/gui_main_initialize_main_header_bar.c
+        src/gui/gui_main_initialize_main_window.c
         src/gui/gui_settings_callback_colorbutton_background.c
         src/gui/gui_settings_callback_colorbutton_foreground.c
         src/gui/gui_settings_callback_combobox_cpu_frequency.c

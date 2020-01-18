@@ -2,7 +2,7 @@
 #include "gui_image_logo.h"
 #include "version.h"
 
-void gui_initialize_main_window(GtkApplication *app) {
+void gui_main_initialize_main_window(GtkApplication *app) {
     // Initialize default value
     gl_gui_components.chip8_screen_width       = 640;
     gl_gui_components.chip8_screen_height      = 320;
@@ -20,9 +20,9 @@ void gui_initialize_main_window(GtkApplication *app) {
     g_object_unref(icon);
     gtk_widget_show_all(gl_gui_components.gtk_window);
 
-    g_signal_connect(gl_gui_components.gtk_window, "destroy", G_CALLBACK(gui_callback_window_destroy), NULL);
-    g_signal_connect(gl_gui_components.gtk_window, "key_press_event", G_CALLBACK(gui_callback_window_key), NULL);
-    g_signal_connect(gl_gui_components.gtk_window, "key_release_event", G_CALLBACK(gui_callback_window_key), NULL);
+    g_signal_connect(gl_gui_components.gtk_window, "destroy", G_CALLBACK(gui_main_callback_window_destroy), NULL);
+    g_signal_connect(gl_gui_components.gtk_window, "key_press_event", G_CALLBACK(gui_main_callback_window_key), NULL);
+    g_signal_connect(gl_gui_components.gtk_window, "key_release_event", G_CALLBACK(gui_main_callback_window_key), NULL);
 
     // Create drawing area
     gl_gui_components.gtk_drawing_area = gtk_drawing_area_new();
@@ -30,13 +30,13 @@ void gui_initialize_main_window(GtkApplication *app) {
     gtk_widget_show_all(GTK_WIDGET(gl_gui_components.gtk_window));
 
     g_signal_connect(gl_gui_components.gtk_drawing_area,
-                      "size-allocate",
-                      G_CALLBACK(gui_callback_drawing_area_new_size),
-                      NULL);
+                     "size-allocate",
+                     G_CALLBACK(gui_main_callback_drawing_area_new_size),
+                     NULL);
     g_signal_connect(gl_gui_components.gtk_drawing_area,
-                      "draw",
-                      G_CALLBACK(gui_callback_drawing_area_draw),
-                      NULL);
+                     "draw",
+                     G_CALLBACK(gui_main_callback_drawing_area_draw),
+                     NULL);
 
     // Start all emulation timers
     gui_emulation_timer_start();

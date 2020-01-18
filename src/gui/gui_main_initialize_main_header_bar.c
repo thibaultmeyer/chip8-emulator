@@ -7,7 +7,7 @@
 #include "gui_image_more_light.h"
 #include "version.h"
 
-void gui_initialize_main_header_bar(void) {
+void gui_main_initialize_main_header_bar(void) {
     // Header bar
     gl_gui_components.gtk_header_bar = gtk_header_bar_new();
     gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), TRUE);
@@ -31,7 +31,7 @@ void gui_initialize_main_header_bar(void) {
     gtk_widget_set_tooltip_text(button, "Load a ROM");
     gtk_container_add(GTK_CONTAINER(button), image);
     gtk_header_bar_pack_start(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), button);
-    g_signal_connect(button, "clicked", G_CALLBACK(gui_callback_header_bar_load_rom), NULL);
+    g_signal_connect(button, "clicked", G_CALLBACK(gui_main_callback_header_bar_load_rom), NULL);
 
     // Button - Reset CPU
     button = gtk_button_new();
@@ -47,7 +47,7 @@ void gui_initialize_main_header_bar(void) {
     gtk_widget_set_tooltip_text(button, "Reset");
     gtk_container_add(GTK_CONTAINER(button), image);
     gtk_header_bar_pack_start(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), button);
-    g_signal_connect(button, "clicked", G_CALLBACK(gui_callback_header_bar_reset_cpu), NULL);
+    g_signal_connect(button, "clicked", G_CALLBACK(gui_main_callback_header_bar_reset_cpu), NULL);
 
     // Button - More
     button = gtk_menu_button_new();
@@ -73,13 +73,13 @@ void gui_initialize_main_header_bar(void) {
     GtkWidget *menu_item_settings = gtk_menu_item_new_with_label("Settings");
     gtk_container_add(GTK_CONTAINER(menu_more), menu_item_settings);
     gtk_menu_attach(GTK_MENU(menu_more), menu_item_settings, 0, 1, 0, 1);
-    g_signal_connect(menu_item_settings, "activate", G_CALLBACK(gui_callback_menu_more_settings), NULL);
+    g_signal_connect(menu_item_settings, "activate", G_CALLBACK(gui_main_callback_menu_more_settings), NULL);
 
     // More menu: About
     GtkWidget *menu_item_about = gtk_menu_item_new_with_label("About");
     gtk_container_add(GTK_CONTAINER(menu_more), menu_item_about);
     gtk_menu_attach(GTK_MENU(menu_more), menu_item_about, 0, 1, 1, 1);
-    g_signal_connect(menu_item_about, "activate", G_CALLBACK(gui_callback_menu_more_about), NULL);
+    g_signal_connect(menu_item_about, "activate", G_CALLBACK(gui_main_callback_menu_more_about), NULL);
 
     // More menu (Refresh)
     gtk_widget_show_all(menu_more);

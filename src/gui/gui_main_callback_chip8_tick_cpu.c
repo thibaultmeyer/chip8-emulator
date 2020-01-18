@@ -1,6 +1,6 @@
 #include "gui.h"
 
-gboolean gui_callback_chip8_tick_cpu() {
+gboolean gui_main_callback_chip8_tick_cpu() {
     if (gl_gui_components.chip8_cpu) {
         chip8_do_next(gl_gui_components.chip8_cpu);
 
