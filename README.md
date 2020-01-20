@@ -6,6 +6,15 @@
 C / GTK3 emulator for the CHIP-8 virtual machine.
 *****
 
+## Screenshots
+<p align="center">
+  <img width="460" height="300" src="https://user-images.githubusercontent.com/1005086/72752649-0b272e00-3bc3-11ea-8443-d1e3e6554bd4.png">
+</p>
+<p align="center">
+  <img width="460" height="300" src="https://user-images.githubusercontent.com/1005086/72752659-167a5980-3bc3-11ea-9728-09272caa681d.png">
+</p>
+
+
 ## Build & install from sources
 To compile and install this project, you must ensure that make, cmake, gcc or clang and GTK development files are being
 correctly installed.
