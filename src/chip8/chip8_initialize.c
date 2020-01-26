@@ -1,6 +1,7 @@
 #include <string.h>
 #include <time.h>
 #include <stdlib.h>
+#include <unistd.h>
 #include "chip8.h"
 
 static inline void chip8_initialize_mask(void) {
@@ -203,6 +204,6 @@ void chip8_initialize(s_chip8_cpu *cpu) {
 
         chip8_initialize_font(cpu);
         chip8_initialize_mask();
-        srand(time(0));
+        srand(time(0) + getpid());
     }
 }
