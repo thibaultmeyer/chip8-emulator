@@ -25,6 +25,8 @@ typedef struct s_chip8_cpu {
     uint8_t  keyboard[CHIP8_KEYBOARD_MAX_KEY];
     uint8_t  video[CHIP8_VIDEO_DIM_HEIGHT][CHIP8_VIDEO_DIM_WIDTH];
     uint8_t  draw;
+
+    void (*fun_opcode_error)(void);
 } s_chip8_cpu;
 
 typedef struct s_chip8_mask {
@@ -83,8 +85,9 @@ uint16_t chip8_get_opcode(s_chip8_cpu *cpu);
  * Initialize the Chip8 CPU.
  *
  * @param cpu Handle to the chip8 CPU instance
+ * @param fun_opcode_error Optional operation code error callback
  */
-void chip8_initialize(s_chip8_cpu *cpu);
+void chip8_initialize(s_chip8_cpu *cpu, void (*fun_opcode_error)(void));
 
 /**
  * Load ROM into memory.

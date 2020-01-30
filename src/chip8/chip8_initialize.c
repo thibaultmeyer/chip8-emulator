@@ -186,7 +186,7 @@ static inline void chip8_initialize_font(s_chip8_cpu *cpu) {
     }
 }
 
-void chip8_initialize(s_chip8_cpu *cpu) {
+void chip8_initialize(s_chip8_cpu *cpu, void (*fun_opcode_error)(void)) {
     if (cpu) {
         memset(cpu->memory, 0, CHIP8_MEMORY_SIZE * sizeof(uint8_t));
         memset(cpu->video, 0, CHIP8_VIDEO_SIZE * sizeof(uint8_t));
@@ -194,13 +194,14 @@ void chip8_initialize(s_chip8_cpu *cpu) {
         memset(cpu->mem_jump, 0, CHIP8_MAX_JUMP * sizeof(uint16_t));
         memset(cpu->keyboard, 0, CHIP8_KEYBOARD_MAX_KEY * sizeof(uint8_t));
 
-        cpu->i              = 0;
-        cpu->nb_jump        = 0;
-        cpu->counter_sync   = 0;
-        cpu->counter_sound  = 0;
-        cpu->pc             = CHIP8_MEMORY_ROM_START;
-        cpu->current_opcode = 0x00;
-        cpu->draw           = 0;
+        cpu->i                = 0;
+        cpu->nb_jump          = 0;
+        cpu->counter_sync     = 0;
+        cpu->counter_sound    = 0;
+        cpu->pc               = CHIP8_MEMORY_ROM_START;
+        cpu->current_opcode   = 0x00;
+        cpu->draw             = 0;
+        cpu->fun_opcode_error = fun_opcode_error;
 
         chip8_initialize_font(cpu);
         chip8_initialize_mask();

@@ -75,6 +75,10 @@ ADD_EXECUTABLE(
         src/chip8/chip8_instruction_fx65.c
         src/gui/gui.h
         src/version.h
+        src/gui/gui_chip8_callback_opcode_error.c
+        src/gui/gui_emulation_timer_start.c
+        src/gui/gui_emulation_timer_stop.c
+        src/gui/gui_image_load_from_memory_scale.c
         src/gui/gui_image_load_rom_dark.h
         src/gui/gui_image_load_rom_light.h
         src/gui/gui_image_logo.h
@@ -82,9 +86,6 @@ ADD_EXECUTABLE(
         src/gui/gui_image_more_light.h
         src/gui/gui_image_reset_cpu_dark.h
         src/gui/gui_image_reset_cpu_light.h
-        src/gui/gui_emulation_timer_start.c
-        src/gui/gui_emulation_timer_stop.c
-        src/gui/gui_image_load_from_memory_scale.c
         src/gui/gui_main_callback_app_activate.c
         src/gui/gui_main_callback_chip8_tick_counter.c
         src/gui/gui_main_callback_chip8_tick_cpu.c

@@ -40,6 +40,11 @@ s_gui_components gl_gui_components;
 s_gui_settings gl_gui_settings;
 
 /**
+ * Callback - CHIP-8 CPU operation code error.
+ */
+void gui_chip8_callback_opcode_error(void);
+
+/**
  * Stop all emulation timers. If all timers are
  * stopped, emulation will be in "pause" state.
  */

@@ -1,7 +1,7 @@
 #include "gui.h"
 
 void gui_emulation_timer_stop() {
-    // Stop "cpu" timer
+    // Stop "CPU" timer
     if (gl_gui_components.gtk_timer_cpu > 0) {
         g_source_remove(gl_gui_components.gtk_timer_cpu);
         gl_gui_components.gtk_timer_cpu = 0;
