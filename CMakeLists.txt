@@ -1,8 +1,11 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.15.3)
 PROJECT(chip8-emulator C)
 
+# Settings
 SET(CMAKE_C_STANDARD 99)
 SET(CMAKE_C_FLAGS "-Wall")
+SET(CMAKE_CXX_FLAGS_DEBUG "-g")
+SET(CMAKE_CXX_FLAGS_RELEASE "-O2")
 
 # Configure windres: don't use flags
 IF (MINGW)
