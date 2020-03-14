@@ -1,7 +1,7 @@
 #include "gui.h"
 
 void gui_toolbox_load_settings_from_file_or_default(void) {
-    gchar    *filename = gui_toolbox_get_settings_filename();
+    gchar    *filename = gui_toolbox_get_storage_file_path(".chip8-emulator.conf");
     GKeyFile *key_file = g_key_file_new();
     gboolean ret       = g_key_file_load_from_file(key_file, filename, G_KEY_FILE_KEEP_COMMENTS, NULL);
 

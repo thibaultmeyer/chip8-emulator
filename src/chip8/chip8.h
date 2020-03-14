@@ -42,6 +42,21 @@ typedef enum e_loadrom_status {
     LOAD_ROM_STATUS_ERROR_READ_ERROR       = 4,
 } e_loadrom_status;
 
+typedef enum e_stateload_status {
+    STATE_LOAD_STATUS_SUCCESS                = 0,
+    STATE_LOAD_STATUS_ERROR_NOT_A_VALID_FILE = 1,
+    STATE_LOAD_STATUS_ERROR_FILE_TOO_BIG     = 2,
+    STATE_LOAD_STATUS_ERROR_CANT_OPEN_FILE   = 3,
+    STATE_LOAD_STATUS_ERROR_READ_ERROR       = 4,
+} e_stateload_status;
+
+typedef enum e_statesave_status {
+    STATE_SAVE_STATUS_SUCCESS                        = 0,
+    STATE_SAVE_STATUS_ERROR_CANT_OPEN_FILE           = 1,
+    STATE_SAVE_STATUS_ERROR_CANT_DELETE_PARTIAL_FILE = 2,
+    STATE_SAVE_STATUS_ERROR_WRITE_ERROR              = 3,
+} e_statesave_status;
+
 s_chip8_mask gl_chip8_mask;
 
 /**
@@ -104,6 +119,24 @@ e_loadrom_status chip8_load_rom(s_chip8_cpu *cpu, const char *filename);
  * @param cpu Handle to the chip8 CPU instance
  */
 void chip8_reset(s_chip8_cpu *cpu);
+
+/**
+ * Loads state from file.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param filename Name of the file to load
+ * @return Status of the operation
+ */
+e_stateload_status chip8_state_load(s_chip8_cpu *cpu, const char *filename);
+
+/**
+ * Saves given CPU state to file.
+ *
+ * @param cpu Handle to the chip8 CPU instance
+ * @param filename Name of the file to save
+ * @return Status of the operation
+ */
+e_statesave_status chip8_state_save(s_chip8_cpu *cpu, const char *filename);
 
 /**
  * Update counter.

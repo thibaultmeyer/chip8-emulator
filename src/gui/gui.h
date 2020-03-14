@@ -1,5 +1,7 @@
 #ifndef CHIP8EMU_GUI_H
 # define CHIP8EMU_GUI_H
+# define CHIP8EMU_GUI_MAX_FILEBASE_SIZE 512
+# define CHIP8EMU_GUI_MAX_FILENAME_SIZE 1024
 
 # include "../chip8/chip8.h"
 # include <gtk/gtk.h>
@@ -14,6 +16,7 @@ typedef struct s_gui_components {
     uint32_t    chip8_screen_width;
     uint32_t    chip8_screen_height;
     uint32_t    chip8_screen_pixel_ratio;
+    gchar       *current_rom_name;
 } s_gui_components;
 
 typedef struct s_gui_settings {
@@ -142,6 +145,22 @@ void gui_main_callback_menu_more_about(GtkApplication *app, gpointer user_data);
 void gui_main_callback_menu_more_settings(GtkApplication *app, gpointer user_data);
 
 /**
+ * Callback. Load CPU state.
+ *
+ * @param app GTK application instance
+ * @param user_data Custom user data
+ */
+void gui_main_callback_menu_state_load(GtkApplication *app, gpointer user_data);
+
+/**
+ * Callback. Save CPU state.
+ *
+ * @param app GTK application instance
+ * @param user_data Custom user data
+ */
+void gui_main_callback_menu_state_save(GtkApplication *app, gpointer user_data);
+
+/**
  * Callback. Main window is destroyed.
  *
  * @param app GTK application instance
@@ -248,11 +267,17 @@ void gui_settings_init_display_mode(GtkFixed *fixed_container);
 void gui_settings_init_key_binding(GtkFixed *fixed_container);
 
 /**
- * Retrieves the settings filename.
- *
- * @return Settings filename
+ * Creates the storage directory.
  */
-gchar *gui_toolbox_get_settings_filename(void);
+void gui_toolbox_create_storage_directory(void);
+
+/**
+ * Retrieves the storage path of the given filename.
+ *
+ * @param filename Needed filename
+ * @return Storage path
+ */
+gchar *gui_toolbox_get_storage_file_path(const char *filename);
 
 /**
  * Check if a GTK dark theme is currently in use.

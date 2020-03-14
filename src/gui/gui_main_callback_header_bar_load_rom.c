@@ -24,7 +24,7 @@ void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_da
     if (res == GTK_RESPONSE_ACCEPT) {
         // Retrieve selected filename
         GtkFileChooser *chooser  = GTK_FILE_CHOOSER(dialog);
-        char           *filename = gtk_file_chooser_get_filename(chooser);
+        gchar          *filename = gtk_file_chooser_get_filename(chooser);
 
         // Destroy file chooser dialog
         gtk_widget_destroy(dialog);
@@ -94,7 +94,12 @@ void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_da
                 // Update UI
                 gchar *basename = g_filename_display_basename(filename);
                 gtk_header_bar_set_subtitle(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), basename);
-                g_free(basename);
+
+                // Keep ROM basename for load/save state
+                if (gl_gui_components.current_rom_name != NULL) {
+                    g_free(gl_gui_components.current_rom_name);
+                }
+                gl_gui_components.current_rom_name = basename;
 
                 // Start emulation
                 gui_emulation_timer_start();

@@ -40,6 +40,8 @@ ADD_EXECUTABLE(
         src/chip8/chip8_initialize.c
         src/chip8/chip8_load_rom.c
         src/chip8/chip8_reset.c
+        src/chip8/chip8_state_load.c
+        src/chip8/chip8_state_save.c
         src/chip8/chip8_update_counter.c
         src/chip8/chip8_instruction_0nnn.c
         src/chip8/chip8_instruction_00e0.c
@@ -98,6 +100,8 @@ ADD_EXECUTABLE(
         src/gui/gui_main_callback_header_bar_reset_cpu.c
         src/gui/gui_main_callback_menu_more_about.c
         src/gui/gui_main_callback_menu_more_settings.c
+        src/gui/gui_main_callback_menu_state_load.c
+        src/gui/gui_main_callback_menu_state_save.c
         src/gui/gui_main_callback_window_destroy.c
         src/gui/gui_main_callback_window_key.c
         src/gui/gui_main_initialize_main_header_bar.c
@@ -113,7 +117,8 @@ ADD_EXECUTABLE(
         src/gui/gui_settings_init_cpu_frequency.c
         src/gui/gui_settings_init_display_mode.c
         src/gui/gui_settings_init_key_binding.c
-        src/gui/gui_toolbox_get_settings_filename.c
+        src/gui/gui_toolbox_create_storage_directory.c
+        src/gui/gui_toolbox_get_storage_file_path.c
         src/gui/gui_toolbox_is_gtk_dark_theme_enabled
         src/gui/gui_toolbox_load_settings_from_file_or_default.c
         src/gui/gui_toolbox_save_settings_to_file.c

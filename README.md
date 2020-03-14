@@ -8,10 +8,10 @@ C / GTK3 emulator for the CHIP-8 virtual machine.
 
 ## Screenshots
 <p align="center">
-  <img width="460" height="300" src="https://user-images.githubusercontent.com/1005086/72752649-0b272e00-3bc3-11ea-8443-d1e3e6554bd4.png">
+  <img width="460" height="300" src="https://user-images.githubusercontent.com/1005086/76698226-abb83c80-66a0-11ea-93bd-32776fee27e4.png">
 </p>
 <p align="center">
-  <img width="460" height="300" src="https://user-images.githubusercontent.com/1005086/72752659-167a5980-3bc3-11ea-9728-09272caa681d.png">
+  <img width="460" height="300" src="https://user-images.githubusercontent.com/1005086/76698228-ace96980-66a0-11ea-8e02-ba9094040731.png">
 </p>
 
 
