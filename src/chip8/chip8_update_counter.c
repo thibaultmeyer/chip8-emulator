@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "chip8.h"
 
 void chip8_update_counter(s_chip8_cpu *cpu) {

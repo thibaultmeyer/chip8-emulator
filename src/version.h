@@ -2,9 +2,9 @@
 # define CHIP8EMU_VERSION_H
 # define CHIP8EMU_AUTHOR               "Thibault Meyer"
 # define CHIP8EMU_APPNAME              "CHIP-8 Emulator"
-# define CHIP8EMU_VERSION              "1.1"
+# define CHIP8EMU_VERSION              "2.0"
 # ifdef _WIN32
-#  define CHIP8EMU_VERSION_WIN_FILE    1,1,0,0
+#  define CHIP8EMU_VERSION_WIN_FILE    2,0,0,0
 #  define CHIP8EMU_VERSION_WIN_PRODUCT CHIP8EMU_VERSION ".0.0"
 # endif
 # define CHIP8EMU_DESCRIPTION          "Emulator for the CHIP-8 virtual machine"
