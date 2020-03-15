@@ -18,11 +18,12 @@ ENDIF (MINGW)
 # Use the package PkgConfig to detect GTK+ headers/library files
 FIND_PACKAGE(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
+PKG_CHECK_MODULES(OPENAL REQUIRED openal)
 
 # Setup CMake to use GTK+, tell the compiler where to look for headers
 # and to the linker where to look for libraries
-INCLUDE_DIRECTORIES(${GTK3_INCLUDE_DIRS})
-LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS})
+INCLUDE_DIRECTORIES(${GTK3_INCLUDE_DIRS} ${OPENAL_INCLUDE_DIRS})
+LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS} ${OPENAL_LIBRARY_DIRS})
 
 # Add other flags to the compiler
 ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER})
@@ -81,6 +82,7 @@ ADD_EXECUTABLE(
         src/gui/gui.h
         src/version.h
         src/gui/gui_chip8_callback_opcode_error.c
+        src/gui/gui_chip8_callback_play_sound.c
         src/gui/gui_emulation_timer_start.c
         src/gui/gui_emulation_timer_stop.c
         src/gui/gui_image_load_from_memory_scale.c
@@ -122,11 +124,13 @@ ADD_EXECUTABLE(
         src/gui/gui_toolbox_is_gtk_dark_theme_enabled
         src/gui/gui_toolbox_load_settings_from_file_or_default.c
         src/gui/gui_toolbox_save_settings_to_file.c
+        src/sound/sound_destroy.c
+        src/sound/sound_initialize.c
+        src/sound/sound_play_buzzer.c
         chip8-emulator.rc)
 
 # Link the target to the GTK+ libraries
-TARGET_LINK_LIBRARIES(chip8-emulator ${GTK3_LIBRARIES})
+TARGET_LINK_LIBRARIES(chip8-emulator ${GTK3_LIBRARIES} ${OPENAL_LIBRARIES})
 
 # Install
-INSTALL(TARGETS chip8-emulator
-        DESTINATION bin)
+INSTALL(TARGETS chip8-emulator DESTINATION bin)

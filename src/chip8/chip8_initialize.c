@@ -186,7 +186,7 @@ static inline void chip8_initialize_font(s_chip8_cpu *cpu) {
     }
 }
 
-void chip8_initialize(s_chip8_cpu *cpu, void (*fun_opcode_error)(void)) {
+void chip8_initialize(s_chip8_cpu *cpu, void (*fun_opcode_error)(void), void (*fun_play_sound)(void)) {
     if (cpu) {
         memset(cpu->memory, 0, CHIP8_MEMORY_SIZE * sizeof(uint8_t));
         memset(cpu->video, 0, CHIP8_VIDEO_SIZE * sizeof(uint8_t));
@@ -202,6 +202,7 @@ void chip8_initialize(s_chip8_cpu *cpu, void (*fun_opcode_error)(void)) {
         cpu->current_opcode   = 0x00;
         cpu->draw             = 0;
         cpu->fun_opcode_error = fun_opcode_error;
+        cpu->fun_play_sound   = fun_play_sound;
 
         chip8_initialize_font(cpu);
         chip8_initialize_mask();

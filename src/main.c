@@ -1,4 +1,5 @@
 #include "gui/gui.h"
+#include "sound/sound.h"
 
 /**
  * Entry point.
@@ -8,6 +9,9 @@
  * @return Application status
  */
 int main(int argc, char **argv) {
+    // Initialize sound engine
+    sound_initialize();
+
     // Initialize GTK
     gtk_init(&argc, &argv);
     GtkApplication *app = gtk_application_new("org.gtk.example", G_APPLICATION_FLAGS_NONE);
@@ -15,5 +19,9 @@ int main(int argc, char **argv) {
     int status = g_application_run(G_APPLICATION(app), argc, argv);
     g_object_unref(app);
 
+    // Destroy sound engine
+    sound_destroy();
+
+    // Return status
     return status;
 }

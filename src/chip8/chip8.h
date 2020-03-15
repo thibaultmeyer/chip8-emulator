@@ -27,6 +27,8 @@ typedef struct s_chip8_cpu {
     uint8_t  draw;
 
     void (*fun_opcode_error)(void);
+
+    void (*fun_play_sound)(void);
 } s_chip8_cpu;
 
 typedef struct s_chip8_mask {
@@ -101,8 +103,9 @@ uint16_t chip8_get_opcode(s_chip8_cpu *cpu);
  *
  * @param cpu Handle to the chip8 CPU instance
  * @param fun_opcode_error Optional operation code error callback
+ * @param fun_play_sound Optional play sound callback
  */
-void chip8_initialize(s_chip8_cpu *cpu, void (*fun_opcode_error)(void));
+void chip8_initialize(s_chip8_cpu *cpu, void (*fun_opcode_error)(void), void (*fun_play_sound)(void));
 
 /**
  * Load ROM into memory.

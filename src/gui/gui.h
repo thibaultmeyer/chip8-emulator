@@ -48,6 +48,11 @@ s_gui_settings gl_gui_settings;
 void gui_chip8_callback_opcode_error(void);
 
 /**
+ * Callback - CHIP-8 CPU play sound.
+ */
+void gui_chip8_callback_play_sound(void);
+
+/**
  * Stop all emulation timers. If all timers are
  * stopped, emulation will be in "pause" state.
  */

@@ -8,8 +8,8 @@ void chip8_update_counter(s_chip8_cpu *cpu) {
         }
 
         if (cpu->counter_sound > 0) {
-            if (cpu->counter_sound == 1) {
-                printf("\a");
+            if (cpu->counter_sound == 1 && cpu->fun_play_sound) {
+                cpu->fun_play_sound();
             }
 
             --cpu->counter_sound;

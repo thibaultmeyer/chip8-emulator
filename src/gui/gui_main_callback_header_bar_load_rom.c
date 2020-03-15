@@ -32,7 +32,7 @@ void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_da
         // Initialize a new chip8 CPU
         s_chip8_cpu *cpu = (s_chip8_cpu *) malloc(sizeof(s_chip8_cpu));
         if (cpu != NULL) {
-            chip8_initialize(cpu, &gui_chip8_callback_opcode_error);
+            chip8_initialize(cpu, &gui_chip8_callback_opcode_error, &gui_chip8_callback_play_sound);
 
             // Load ROM
             GtkWidget        *error_msg_dialog;
