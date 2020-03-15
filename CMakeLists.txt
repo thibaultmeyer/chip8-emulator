@@ -130,7 +130,7 @@ ADD_EXECUTABLE(
         chip8-emulator.rc)
 
 # Link the target to the GTK+ libraries
-TARGET_LINK_LIBRARIES(chip8-emulator ${GTK3_LIBRARIES} ${OPENAL_LIBRARIES})
+TARGET_LINK_LIBRARIES(chip8-emulator -lm ${GTK3_LIBRARIES} ${OPENAL_LIBRARIES})
 
 # Install
 INSTALL(TARGETS chip8-emulator DESTINATION bin)

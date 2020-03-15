@@ -7,8 +7,7 @@ void sound_initialize(void) {
 
     gl_sound_components.openal_output_device  = alcOpenDevice(defname);
     gl_sound_components.openal_output_context = alcCreateContext(gl_sound_components.openal_output_device, NULL);
-    alcMakeContextCurrent(gl_sound_components.openal_output_context);
 
+    alcMakeContextCurrent(gl_sound_components.openal_output_context);
     alGenBuffers(1, &gl_sound_components.internal_buffer);
-    //al_check_error("failed call to alGenBuffers");
 }
