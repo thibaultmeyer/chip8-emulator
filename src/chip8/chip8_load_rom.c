@@ -19,7 +19,11 @@ e_loadrom_status chip8_load_rom(s_chip8_cpu *cpu, const char *filename) {
     }
 
     // Open file
+#ifdef _WIN32
+    file_descriptor = open(filename, O_RDONLY | O_BINARY);
+#else
     file_descriptor = open(filename, O_RDONLY);
+#endif
     if (file_descriptor > 0) {
 
         // Read file content
