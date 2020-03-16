@@ -1,0 +1,44 @@
+name: chip8-emulator
+summary: CHIP-8 Emulator
+description: Emulator for the CHIP-8 virtual machine.
+license: MIT
+
+base: core18
+confinement: strict
+grade: stable
+adopt-info: chip8-emulator
+
+apps:
+  chip8-emulator:
+    command: bin/chip8-emulator
+    extensions: [gnome-3-28]
+    plugs:
+      - home
+    slots:
+      - dbus-daemon
+    common-id: com.github.thibaultmeyer.chip8-emulator
+
+parts:
+  chip8-emulator:
+    plugin: cmake
+    source: https://github.com/thibaultmeyer/chip8-emulator.git
+    source-branch: master
+    build-packages:
+      - gcc
+      - libgtk-3-dev
+      - pkg-config
+      - gettext
+      - libopenal-dev
+    stage-packages:
+      - libopenal1
+      - libsndio6.1
+    override-pull: |
+      snapcraftctl pull
+      snapcraftctl set-version `git describe --abbrev=0 | cut -d/ -f2`
+      snapcraftctl set-grade "stable"
+
+slots:
+  dbus-daemon:
+    interface: dbus
+    bus: session
+    name: com.github.thibaultmeyer.chip8-emulator
