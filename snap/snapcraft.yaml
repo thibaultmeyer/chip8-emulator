@@ -24,6 +24,7 @@ parts:
     source: https://github.com/thibaultmeyer/chip8-emulator.git
     source-branch: master
     build-packages:
+      - cmake
       - gcc
       - libgtk-3-dev
       - pkg-config
@@ -34,7 +35,7 @@ parts:
       - libsndio6.1
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version `git describe --abbrev=0 | cut -d/ -f2`
+      snapcraftctl set-version `git describe --abbrev=0 | cut -d/ -f2``echo .``git describe | cut -sd\- -f2`
       snapcraftctl set-grade "stable"
 
 slots:
