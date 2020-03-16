@@ -20,8 +20,9 @@ e_stateload_status chip8_state_load(s_chip8_cpu *cpu, const char *filename) {
         }
 
         // Read file content on temporary buffer
-        ssize_t ret = read(file_descriptor, buffer, sizeof(s_chip8_cpu));
-        if (ret != sizeof(s_chip8_cpu)) {
+        uint32_t size_to_read = sizeof(s_chip8_cpu) - (2 * sizeof(void (*)(void)));
+        ssize_t ret = read(file_descriptor, buffer, size_to_read);
+        if (ret != size_to_read) {
 
             // Write size is not same as the file size: Error!
             close(file_descriptor);
@@ -31,7 +32,7 @@ e_stateload_status chip8_state_load(s_chip8_cpu *cpu, const char *filename) {
         }
 
         // Copy temporary buffer to the real destination
-        memcpy(cpu, buffer, sizeof(s_chip8_cpu));
+        memcpy(cpu, buffer, size_to_read);
 
         // Free allocated buffer
         free(buffer);
