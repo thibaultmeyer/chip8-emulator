@@ -1,5 +1,9 @@
 #include "gui.h"
 
+#ifndef G_SOURCE_FUNC
+# define G_SOURCE_FUNC
+#endif
+
 void gui_emulation_timer_start() {
     // Start "CPU" timer
     if (gl_gui_components.gtk_timer_cpu == 0) {
