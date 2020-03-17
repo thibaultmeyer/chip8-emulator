@@ -13,7 +13,9 @@ apps:
     command: bin/chip8-emulator
     extensions: [gnome-3-28]
     plugs:
+      - alsa
       - home
+      - pulseaudio
     slots:
       - dbus-daemon
     common-id: com.github.thibaultmeyer.chip8-emulator
