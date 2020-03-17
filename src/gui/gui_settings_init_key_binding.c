@@ -1,147 +1,189 @@
+#include <stdlib.h>
 #include "gui.h"
+
+static void gui_settings_callback_window_destroy_force(GtkWidget *widget, gpointer data) {
+    free(data);
+}
 
 void gui_settings_init_key_binding(GtkFixed *fixed_container) {
     // Create label and entry components
-    GtkWidget *label_key_binding = gtk_label_new("Keys");
-    GtkWidget *entry_key_0       = gtk_entry_new();
-    GtkWidget *entry_key_1       = gtk_entry_new();
-    GtkWidget *entry_key_2       = gtk_entry_new();
-    GtkWidget *entry_key_3       = gtk_entry_new();
-    GtkWidget *entry_key_4       = gtk_entry_new();
-    GtkWidget *entry_key_5       = gtk_entry_new();
-    GtkWidget *entry_key_6       = gtk_entry_new();
-    GtkWidget *entry_key_7       = gtk_entry_new();
-    GtkWidget *entry_key_8       = gtk_entry_new();
-    GtkWidget *entry_key_9       = gtk_entry_new();
-    GtkWidget *entry_key_A       = gtk_entry_new();
-    GtkWidget *entry_key_B       = gtk_entry_new();
-    GtkWidget *entry_key_C       = gtk_entry_new();
-    GtkWidget *entry_key_D       = gtk_entry_new();
-    GtkWidget *entry_key_E       = gtk_entry_new();
-    GtkWidget *entry_key_F       = gtk_entry_new();
+    s_gui_key_binding_context *key_binding_ctx   = malloc(sizeof(s_gui_key_binding_context) * 16);
+    GtkWidget                 *label_key_binding = gtk_label_new("Keys");
+    gchar                     *key_name          = NULL;
 
-    // Configure entry components
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_0), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_0), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_0), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_1), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_1), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_1), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_2), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_2), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_2), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_3), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_3), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_3), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_4), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_4), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_4), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_5), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_5), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_5), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_6), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_6), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_6), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_7), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_7), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_7), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_8), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_8), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_8), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_9), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_9), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_9), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_A), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_A), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_A), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_B), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_B), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_B), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_C), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_C), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_C), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_D), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_D), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_D), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_E), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_E), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_E), 0.5);
-    gtk_entry_set_max_length(GTK_ENTRY(entry_key_F), 1);
-    gtk_entry_set_width_chars(GTK_ENTRY(entry_key_F), 2);
-    gtk_entry_set_alignment(GTK_ENTRY(entry_key_F), 0.5);
+    // Initialize key binding context
+    memset(key_binding_ctx, 0, sizeof(s_gui_key_binding_context) * 16);
+    key_binding_ctx[0].button   = gtk_button_new();
+    key_binding_ctx[0].key_idx  = 0;
+    key_binding_ctx[1].button   = gtk_button_new();
+    key_binding_ctx[1].key_idx  = 1;
+    key_binding_ctx[2].button   = gtk_button_new();
+    key_binding_ctx[2].key_idx  = 2;
+    key_binding_ctx[3].button   = gtk_button_new();
+    key_binding_ctx[3].key_idx  = 3;
+    key_binding_ctx[4].button   = gtk_button_new();
+    key_binding_ctx[4].key_idx  = 4;
+    key_binding_ctx[5].button   = gtk_button_new();
+    key_binding_ctx[5].key_idx  = 5;
+    key_binding_ctx[6].button   = gtk_button_new();
+    key_binding_ctx[6].key_idx  = 6;
+    key_binding_ctx[7].button   = gtk_button_new();
+    key_binding_ctx[7].key_idx  = 7;
+    key_binding_ctx[8].button   = gtk_button_new();
+    key_binding_ctx[8].key_idx  = 8;
+    key_binding_ctx[9].button   = gtk_button_new();
+    key_binding_ctx[9].key_idx  = 9;
+    key_binding_ctx[10].button  = gtk_button_new();
+    key_binding_ctx[10].key_idx = 10;
+    key_binding_ctx[11].button  = gtk_button_new();
+    key_binding_ctx[11].key_idx = 11;
+    key_binding_ctx[12].button  = gtk_button_new();
+    key_binding_ctx[12].key_idx = 12;
+    key_binding_ctx[13].button  = gtk_button_new();
+    key_binding_ctx[13].key_idx = 13;
+    key_binding_ctx[14].button  = gtk_button_new();
+    key_binding_ctx[14].key_idx = 14;
+    key_binding_ctx[15].button  = gtk_button_new();
+    key_binding_ctx[15].key_idx = 15;
 
     // Restore values
-    gchar *text = g_malloc0(2);
-    text[0] = gl_gui_settings.keybinding[0];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_0), text);
-    text[0] = gl_gui_settings.keybinding[1];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_1), text);
-    text[0] = gl_gui_settings.keybinding[2];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_2), text);
-    text[0] = gl_gui_settings.keybinding[3];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_3), text);
-    text[0] = gl_gui_settings.keybinding[4];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_4), text);
-    text[0] = gl_gui_settings.keybinding[5];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_5), text);
-    text[0] = gl_gui_settings.keybinding[6];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_6), text);
-    text[0] = gl_gui_settings.keybinding[7];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_7), text);
-    text[0] = gl_gui_settings.keybinding[8];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_8), text);
-    text[0] = gl_gui_settings.keybinding[9];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_9), text);
-    text[0] = gl_gui_settings.keybinding[10];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_A), text);
-    text[0] = gl_gui_settings.keybinding[11];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_B), text);
-    text[0] = gl_gui_settings.keybinding[12];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_C), text);
-    text[0] = gl_gui_settings.keybinding[13];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_D), text);
-    text[0] = gl_gui_settings.keybinding[14];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_E), text);
-    text[0] = gl_gui_settings.keybinding[15];
-    gtk_entry_set_text(GTK_ENTRY(entry_key_F), text);
-    g_free(text);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[0]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[0].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[1]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[1].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[2]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[2].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[3]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[3].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[4]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[4].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[5]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[5].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[6]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[6].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[7]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[7].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[8]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[8].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[9]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[9].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[10]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[10].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[11]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[11].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[12]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[12].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[13]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[13].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[14]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[14].button), key_name);
+    key_name = gdk_keyval_name(gl_gui_settings.keybinding[15]);
+    gtk_button_set_label(GTK_BUTTON(key_binding_ctx[15].button), key_name);
 
-    // Connect signal
-    g_signal_connect(entry_key_0, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 0);
-    g_signal_connect(entry_key_1, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 1);
-    g_signal_connect(entry_key_2, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 2);
-    g_signal_connect(entry_key_3, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 3);
-    g_signal_connect(entry_key_4, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 4);
-    g_signal_connect(entry_key_5, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 5);
-    g_signal_connect(entry_key_6, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 6);
-    g_signal_connect(entry_key_7, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 7);
-    g_signal_connect(entry_key_8, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 8);
-    g_signal_connect(entry_key_9, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 9);
-    g_signal_connect(entry_key_A, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 10);
-    g_signal_connect(entry_key_B, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 11);
-    g_signal_connect(entry_key_C, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 12);
-    g_signal_connect(entry_key_D, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 13);
-    g_signal_connect(entry_key_E, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 14);
-    g_signal_connect(entry_key_F, "changed", G_CALLBACK(gui_settings_callback_input_key), (void *) 15);
+    // Set button size (width, height)
+    gtk_widget_set_size_request(key_binding_ctx[0].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[1].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[2].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[3].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[4].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[5].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[6].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[7].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[8].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[9].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[10].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[11].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[12].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[13].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[14].button, 125, 35);
+    gtk_widget_set_size_request(key_binding_ctx[15].button, 125, 35);
 
     // Place components on the container
     gtk_fixed_put(fixed_container, label_key_binding, 350, 15);
-    gtk_fixed_put(fixed_container, entry_key_1, 420, 10);
-    gtk_fixed_put(fixed_container, entry_key_2, 460, 10);
-    gtk_fixed_put(fixed_container, entry_key_3, 500, 10);
-    gtk_fixed_put(fixed_container, entry_key_C, 540, 10);
-    gtk_fixed_put(fixed_container, entry_key_4, 420, 50);
-    gtk_fixed_put(fixed_container, entry_key_5, 460, 50);
-    gtk_fixed_put(fixed_container, entry_key_6, 500, 50);
-    gtk_fixed_put(fixed_container, entry_key_D, 540, 50);
-    gtk_fixed_put(fixed_container, entry_key_7, 420, 90);
-    gtk_fixed_put(fixed_container, entry_key_8, 460, 90);
-    gtk_fixed_put(fixed_container, entry_key_9, 500, 90);
-    gtk_fixed_put(fixed_container, entry_key_E, 540, 90);
-    gtk_fixed_put(fixed_container, entry_key_A, 420, 130);
-    gtk_fixed_put(fixed_container, entry_key_0, 460, 130);
-    gtk_fixed_put(fixed_container, entry_key_B, 500, 130);
-    gtk_fixed_put(fixed_container, entry_key_F, 540, 130);
+    gtk_fixed_put(fixed_container, key_binding_ctx[1].button, 420, 10);
+    gtk_fixed_put(fixed_container, key_binding_ctx[2].button, 550, 10);
+    gtk_fixed_put(fixed_container, key_binding_ctx[3].button, 680, 10);
+    gtk_fixed_put(fixed_container, key_binding_ctx[12].button, 810, 10);
+    gtk_fixed_put(fixed_container, key_binding_ctx[4].button, 420, 50);
+    gtk_fixed_put(fixed_container, key_binding_ctx[5].button, 550, 50);
+    gtk_fixed_put(fixed_container, key_binding_ctx[6].button, 680, 50);
+    gtk_fixed_put(fixed_container, key_binding_ctx[13].button, 810, 50);
+    gtk_fixed_put(fixed_container, key_binding_ctx[7].button, 420, 90);
+    gtk_fixed_put(fixed_container, key_binding_ctx[8].button, 550, 90);
+    gtk_fixed_put(fixed_container, key_binding_ctx[9].button, 680, 90);
+    gtk_fixed_put(fixed_container, key_binding_ctx[14].button, 810, 90);
+    gtk_fixed_put(fixed_container, key_binding_ctx[10].button, 420, 130);
+    gtk_fixed_put(fixed_container, key_binding_ctx[0].button, 550, 130);
+    gtk_fixed_put(fixed_container, key_binding_ctx[11].button, 680, 130);
+    gtk_fixed_put(fixed_container, key_binding_ctx[15].button, 810, 130);
 
-    //uint32_t t = ;
+    // Connect signals
+    g_signal_connect(key_binding_ctx[0].button,
+                     "destroy",
+                     G_CALLBACK(gui_settings_callback_window_destroy_force),
+                     key_binding_ctx);
+    g_signal_connect(key_binding_ctx[0].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[0]);
+    g_signal_connect(key_binding_ctx[1].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[1]);
+    g_signal_connect(key_binding_ctx[2].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[2]);
+    g_signal_connect(key_binding_ctx[3].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[3]);
+    g_signal_connect(key_binding_ctx[4].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[4]);
+    g_signal_connect(key_binding_ctx[5].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[5]);
+    g_signal_connect(key_binding_ctx[6].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[6]);
+    g_signal_connect(key_binding_ctx[7].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[7]);
+    g_signal_connect(key_binding_ctx[8].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[8]);
+    g_signal_connect(key_binding_ctx[9].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[9]);
+    g_signal_connect(key_binding_ctx[10].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[10]);
+    g_signal_connect(key_binding_ctx[11].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[11]);
+    g_signal_connect(key_binding_ctx[12].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[12]);
+    g_signal_connect(key_binding_ctx[13].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[13]);
+    g_signal_connect(key_binding_ctx[14].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[14]);
+    g_signal_connect(key_binding_ctx[15].button,
+                     "clicked",
+                     G_CALLBACK(gui_settings_callback_btn_input_key),
+                     (s_gui_key_binding_context *) &key_binding_ctx[15]);
 }

@@ -17,7 +17,7 @@ e_statesave_status chip8_state_save(s_chip8_cpu *cpu, const char *filename) {
 
         // Write file content
         uint32_t size_to_write = sizeof(s_chip8_cpu) - (2 * sizeof(void (*)(void)));
-        ssize_t ret = write(file_descriptor, cpu, size_to_write);
+        ssize_t  ret           = write(file_descriptor, cpu, size_to_write);
         if (ret != size_to_write) {
 
             // Write size is not same as the file size: Error!

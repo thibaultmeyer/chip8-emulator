@@ -8,6 +8,7 @@
 
 typedef struct s_gui_components {
     GtkWidget   *gtk_window;
+    GtkWidget   *gtk_window_setting;
     GtkWidget   *gtk_header_bar;
     GtkWidget   *gtk_drawing_area;
     guint       gtk_timer_cpu;
@@ -31,6 +32,11 @@ typedef struct s_gui_settings_combobox_value {
     uint32_t   key;
     const char *value;
 } s_gui_settings_combobox_value;
+
+typedef struct s_gui_key_binding_context {
+    GtkWidget *button;
+    uint32_t  key_idx;
+} s_gui_key_binding_context;
 
 /**
  * Handle to the gui components.
@@ -218,10 +224,10 @@ void gui_settings_callback_combobox_cpu_frequency(GtkComboBox *widget, gpointer 
 /**
  * Settings - Callback - Set binding for a specific key.
  *
- * @param widget Handle to the GTK entry
- * @param key_idx Index of the key to set
+ * @param button Handle to the GTK button
+ * @param key_binding_ctx Key binding context
  */
-void gui_settings_callback_input_key(GtkEntry *entry, uint32_t key_idx);
+void gui_settings_callback_btn_input_key(GtkButton *button, s_gui_key_binding_context *key_binding_ctx);
 
 /**
  * Callback. Settings window is destroyed.

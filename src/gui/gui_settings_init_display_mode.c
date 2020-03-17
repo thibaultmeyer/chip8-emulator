@@ -42,5 +42,5 @@ void gui_settings_init_display_mode(GtkFixed *fixed_container) {
 
     // Place components on the container
     gtk_fixed_put(fixed_container, label_display_mode, 10, 15);
-    gtk_fixed_put(fixed_container, combo_display_mode, 140, 10);
+    gtk_fixed_put(fixed_container, combo_display_mode, 170, 10);
 }

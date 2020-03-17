@@ -46,5 +46,5 @@ void gui_settings_init_cpu_frequency(GtkFixed *fixed_container) {
 
     // Place components on the container
     gtk_fixed_put(fixed_container, label_cpu_frequency, 10, 65);
-    gtk_fixed_put(fixed_container, combo_cpu_frequency, 140, 60);
+    gtk_fixed_put(fixed_container, combo_cpu_frequency, 170, 60);
 }

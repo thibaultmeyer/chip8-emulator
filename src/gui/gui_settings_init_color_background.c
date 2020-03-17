@@ -12,5 +12,5 @@ void gui_settings_init_color_background(GtkFixed *fixed_container) {
 
     // Place components on the container
     gtk_fixed_put(fixed_container, label_color_foreground, 10, 165);
-    gtk_fixed_put(fixed_container, button_color_foreground, 140, 160);
+    gtk_fixed_put(fixed_container, button_color_foreground, 170, 160);
 }

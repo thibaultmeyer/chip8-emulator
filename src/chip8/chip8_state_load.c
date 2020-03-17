@@ -21,7 +21,7 @@ e_stateload_status chip8_state_load(s_chip8_cpu *cpu, const char *filename) {
 
         // Read file content on temporary buffer
         uint32_t size_to_read = sizeof(s_chip8_cpu) - (2 * sizeof(void (*)(void)));
-        ssize_t ret = read(file_descriptor, buffer, size_to_read);
+        ssize_t  ret          = read(file_descriptor, buffer, size_to_read);
         if (ret != size_to_read) {
 
             // Write size is not same as the file size: Error!
