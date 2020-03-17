@@ -37,7 +37,7 @@ parts:
       - libsndio6.1
     override-pull: |
       snapcraftctl pull
-      snapcraftctl set-version `git describe --abbrev=0 | cut -d/ -f2``echo .``git describe | cut -sd\- -f2`
+      snapcraftctl set-version `git describe --abbrev=0 | cut -d/ -f2``echo .``MINOR="\`git describe | cut -sd\- -f2\`"; if [ -z ${MINOR} ]; then echo 0; else echo ${MINOR}; fi`
       snapcraftctl set-grade "stable"
 
 slots:
