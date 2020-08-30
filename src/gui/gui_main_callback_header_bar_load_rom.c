@@ -35,7 +35,7 @@ void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_da
             chip8_initialize(cpu, &gui_chip8_callback_opcode_error, &gui_chip8_callback_play_sound);
 
             // Load ROM
-            GtkWidget        *error_msg_dialog;
+            GtkWidget        *error_msg_dialog = NULL;
             e_loadrom_status status = chip8_load_rom(cpu, filename);
             switch (status) {
                 case LOAD_ROM_STATUS_ERROR_NOT_A_VALID_FILE: {

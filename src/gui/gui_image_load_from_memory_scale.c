@@ -2,8 +2,8 @@
 
 GdkPixbuf *gui_image_load_from_memory_scale(const unsigned char *data,
                                             const unsigned int length,
-                                            const unsigned int width,
-                                            const unsigned int height) {
+                                            const int width,
+                                            const int height) {
     GdkPixbufLoader *loader = gdk_pixbuf_loader_new();
     gdk_pixbuf_loader_write(loader, data, length, NULL);
 

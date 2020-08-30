@@ -79,8 +79,8 @@ void gui_emulation_timer_start();
  */
 GdkPixbuf *gui_image_load_from_memory_scale(const unsigned char *data,
                                             unsigned int length,
-                                            unsigned int width,
-                                            unsigned int height);
+                                            int width,
+                                            int height);
 
 /**
  * Callback. Configure main window when activated. Only call once.
