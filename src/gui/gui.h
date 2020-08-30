@@ -41,12 +41,12 @@ typedef struct s_gui_key_binding_context {
 /**
  * Handle to the gui components.
  */
-s_gui_components gl_gui_components;
+extern s_gui_components gl_gui_components;
 
 /**
  * Handle to the gui settings.
  */
-s_gui_settings gl_gui_settings;
+extern s_gui_settings gl_gui_settings;
 
 /**
  * Callback - CHIP-8 CPU operation code error.

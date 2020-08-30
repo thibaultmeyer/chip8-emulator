@@ -4,78 +4,82 @@
 #include <unistd.h>
 #include "chip8.h"
 
-static inline void chip8_initialize_mask(void) {
-    gl_chip8_mask.mask[0]  = 0x0000; /* 0NNN */
-    gl_chip8_mask.id[0]    = 0x0FFF;
-    gl_chip8_mask.mask[1]  = 0xFFFF; /* 00E0 */
-    gl_chip8_mask.id[1]    = 0x00E0;
-    gl_chip8_mask.mask[2]  = 0xFFFF; /* 00EE */
-    gl_chip8_mask.id[2]    = 0x00EE;
-    gl_chip8_mask.mask[3]  = 0xF000; /* 1NNN */
-    gl_chip8_mask.id[3]    = 0x1000;
-    gl_chip8_mask.mask[4]  = 0xF000; /* 2NNN */
-    gl_chip8_mask.id[4]    = 0x2000;
-    gl_chip8_mask.mask[5]  = 0xF000; /* 3XKK */
-    gl_chip8_mask.id[5]    = 0x3000;
-    gl_chip8_mask.mask[6]  = 0xF000; /* 4XKK */
-    gl_chip8_mask.id[6]    = 0x4000;
-    gl_chip8_mask.mask[7]  = 0xF00F; /* 5XY0 */
-    gl_chip8_mask.id[7]    = 0x5000;
-    gl_chip8_mask.mask[8]  = 0xF000; /* 6XKK */
-    gl_chip8_mask.id[8]    = 0x6000;
-    gl_chip8_mask.mask[9]  = 0xF000; /* 7XKK */
-    gl_chip8_mask.id[9]    = 0x7000;
-    gl_chip8_mask.mask[10] = 0xF00F; /* 8XY0 */
-    gl_chip8_mask.id[10]   = 0x8000;
-    gl_chip8_mask.mask[11] = 0xF00F; /* 8XY1 */
-    gl_chip8_mask.id[11]   = 0x8001;
-    gl_chip8_mask.mask[12] = 0xF00F; /* 8XY2 */
-    gl_chip8_mask.id[12]   = 0x8002;
-    gl_chip8_mask.mask[13] = 0xF00F; /* BXY3 */
-    gl_chip8_mask.id[13]   = 0x8003;
-    gl_chip8_mask.mask[14] = 0xF00F; /* 8XY4 */
-    gl_chip8_mask.id[14]   = 0x8004;
-    gl_chip8_mask.mask[15] = 0xF00F; /* 8XY5 */
-    gl_chip8_mask.id[15]   = 0x8005;
-    gl_chip8_mask.mask[16] = 0xF00F; /* 8XY6 */
-    gl_chip8_mask.id[16]   = 0x8006;
-    gl_chip8_mask.mask[17] = 0xF00F; /* 8XY7 */
-    gl_chip8_mask.id[17]   = 0x8007;
-    gl_chip8_mask.mask[18] = 0xF00F; /* 8XYE */
-    gl_chip8_mask.id[18]   = 0x800E;
-    gl_chip8_mask.mask[19] = 0xF00F; /* 9XY0 */
-    gl_chip8_mask.id[19]   = 0x9000;
-    gl_chip8_mask.mask[20] = 0xF000; /* ANNN */
-    gl_chip8_mask.id[20]   = 0xA000;
-    gl_chip8_mask.mask[21] = 0xF000; /* BNNN */
-    gl_chip8_mask.id[21]   = 0xB000;
-    gl_chip8_mask.mask[22] = 0xF000; /* CXKK */
-    gl_chip8_mask.id[22]   = 0xC000;
-    gl_chip8_mask.mask[23] = 0xF000; /* DXYN */
-    gl_chip8_mask.id[23]   = 0xD000;
-    gl_chip8_mask.mask[24] = 0xF0FF; /* EX9E */
-    gl_chip8_mask.id[24]   = 0xE09E;
-    gl_chip8_mask.mask[25] = 0xF0FF; /* EXA1 */
-    gl_chip8_mask.id[25]   = 0xE0A1;
-    gl_chip8_mask.mask[26] = 0xF0FF; /* FX07 */
-    gl_chip8_mask.id[26]   = 0xF007;
-    gl_chip8_mask.mask[27] = 0xF0FF; /* FX0A */
-    gl_chip8_mask.id[27]   = 0xF00A;
-    gl_chip8_mask.mask[28] = 0xF0FF; /* FX15 */
-    gl_chip8_mask.id[28]   = 0xF015;
-    gl_chip8_mask.mask[29] = 0xF0FF; /* FX18 */
-    gl_chip8_mask.id[29]   = 0xF018;
-    gl_chip8_mask.mask[30] = 0xF0FF; /* FX1E */
-    gl_chip8_mask.id[30]   = 0xF01E;
-    gl_chip8_mask.mask[31] = 0xF0FF; /* FX29 */
-    gl_chip8_mask.id[31]   = 0xF029;
-    gl_chip8_mask.mask[32] = 0xF0FF; /* FX33 */
-    gl_chip8_mask.id[32]   = 0xF033;
-    gl_chip8_mask.mask[33] = 0xF0FF; /* FX55 */
-    gl_chip8_mask.id[33]   = 0xF055;
-    gl_chip8_mask.mask[34] = 0xF0FF; /* FX65 */
-    gl_chip8_mask.id[34]   = 0xF065;
-}
+const s_chip8_mask gl_chip8_mask = {
+        .mask = {
+                0x0000, /* 0NNN */
+                0xFFFF, /* 00E0 */
+                0xFFFF, /* 00EE */
+                0xF000, /* 1NNN */
+                0xF000, /* 2NNN */
+                0xF000, /* 3XKK */
+                0xF000, /* 4XKK */
+                0xF00F, /* 5XY0 */
+                0xF000, /* 6XKK */
+                0xF000, /* 7XKK */
+                0xF00F, /* 8XY0 */
+                0xF00F, /* 8XY1 */
+                0xF00F, /* 8XY2 */
+                0xF00F, /* BXY3 */
+                0xF00F, /* 8XY4 */
+                0xF00F, /* 8XY5 */
+                0xF00F, /* 8XY6 */
+                0xF00F, /* 8XY7 */
+                0xF00F, /* 8XYE */
+                0xF00F, /* 9XY0 */
+                0xF000, /* ANNN */
+                0xF000, /* BNNN */
+                0xF000, /* CXKK */
+                0xF000, /* DXYN */
+                0xF0FF, /* EX9E */
+                0xF0FF, /* EXA1 */
+                0xF0FF, /* FX07 */
+                0xF0FF, /* FX0A */
+                0xF0FF, /* FX15 */
+                0xF0FF, /* FX18 */
+                0xF0FF, /* FX1E */
+                0xF0FF, /* FX29 */
+                0xF0FF, /* FX33 */
+                0xF0FF, /* FX55 */
+                0xF0FF  /* FX65 */
+        },
+        .id = {
+                0x0FFF, /* 0NNN */
+                0x00E0, /* 00E0 */
+                0x00EE, /* 00EE */
+                0x1000, /* 1NNN */
+                0x2000, /* 2NNN */
+                0x3000, /* 3XKK */
+                0x4000, /* 4XKK */
+                0x5000, /* 5XY0 */
+                0x6000, /* 6XKK */
+                0x7000, /* 7XKK */
+                0x8000, /* 8XY0 */
+                0x8001, /* 8XY1 */
+                0x8002, /* 8XY2 */
+                0x8003, /* BXY3 */
+                0x8004, /* 8XY4 */
+                0x8005, /* 8XY5 */
+                0x8006, /* 8XY6 */
+                0x8007, /* 8XY7 */
+                0x800E, /* 8XYE */
+                0x9000, /* 9XY0 */
+                0xA000, /* ANNN */
+                0xB000, /* BNNN */
+                0xC000, /* CXKK */
+                0xD000, /* DXYN */
+                0xE09E, /* EX9E */
+                0xE0A1, /* EXA1 */
+                0xF007, /* FX07 */
+                0xF00A, /* FX0A */
+                0xF015, /* FX15 */
+                0xF018, /* FX18 */
+                0xF01E, /* FX1E */
+                0xF029, /* FX29 */
+                0xF033, /* FX33 */
+                0xF055, /* FX55 */
+                0xF065  /* FX65 */
+        }
+};
 
 static inline void chip8_initialize_font(s_chip8_cpu *cpu) {
     if (cpu) {
@@ -205,7 +209,6 @@ void chip8_initialize(s_chip8_cpu *cpu, void (*fun_opcode_error)(void), void (*f
         cpu->fun_play_sound   = fun_play_sound;
 
         chip8_initialize_font(cpu);
-        chip8_initialize_mask();
         srand(time(0) + getpid());
     }
 }

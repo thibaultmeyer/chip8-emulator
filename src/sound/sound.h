@@ -20,7 +20,7 @@ typedef struct s_sound_components {
 /**
  * Handle to the gui components.
  */
-s_sound_components gl_sound_components;
+extern s_sound_components gl_sound_components;
 
 void sound_initialize(void);
 

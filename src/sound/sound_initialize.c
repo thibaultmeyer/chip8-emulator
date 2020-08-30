@@ -3,6 +3,8 @@
 #include <string.h>
 #include "sound.h"
 
+s_sound_components gl_sound_components = {0};
+
 void sound_initialize(void) {
     const char *defname       = alcGetString(NULL, ALC_DEFAULT_DEVICE_SPECIFIER);
     float      freq           = 400.f;

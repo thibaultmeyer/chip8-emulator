@@ -59,7 +59,7 @@ typedef enum e_statesave_status {
     STATE_SAVE_STATUS_ERROR_WRITE_ERROR              = 3,
 } e_statesave_status;
 
-s_chip8_mask gl_chip8_mask;
+extern const s_chip8_mask gl_chip8_mask;
 
 /**
  * Execute current operation code and increment PC.
