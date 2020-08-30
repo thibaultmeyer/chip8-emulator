@@ -2,6 +2,7 @@
 
 [![Latest release](https://img.shields.io/badge/latest_release-2.0-orange.svg)](https://github.com/thibaultmeyer/chip8-emulator/releases)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/thibaultmeyer/chip8-emulator/blob/master/LICENSE)
+[![CodeFactor](https://www.codefactor.io/repository/github/thibaultmeyer/chip8-emulator/badge)](https://www.codefactor.io/repository/github/thibaultmeyer/chip8-emulator)
 
 [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-white.svg)](https://snapcraft.io/chip8-emulator)
 
