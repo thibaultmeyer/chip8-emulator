@@ -1,5 +1,8 @@
 #ifndef CHIP8EMU_CHIP8_H
 # define CHIP8EMU_CHIP8_H
+
+# include <stdint.h>
+
 # define CHIP8_MEMORY_SIZE      4096
 # define CHIP8_VIDEO_DIM_WIDTH  64
 # define CHIP8_VIDEO_DIM_HEIGHT 32
@@ -9,8 +12,6 @@
 # define CHIP8_NB_OPCODE        35
 # define CHIP8_MEMORY_ROM_START 512
 # define CHIP8_KEYBOARD_MAX_KEY 16
-
-# include <stdint.h>
 
 typedef struct s_chip8_cpu {
     uint8_t  memory[CHIP8_MEMORY_SIZE];

@@ -23,12 +23,12 @@ void gui_main_initialize_main_header_bar(void) {
     GtkWidget *button = gtk_button_new();
     GdkPixbuf *pixbuf = is_dark_theme_enabled ? gui_image_load_from_memory_scale(gui_image_load_rom_light_bytes,
                                                                                  gui_image_load_rom_light_length,
-                                                                                 20,
-                                                                                 20)
+                                                                                 CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH,
+                                                                                 CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT)
                                               : gui_image_load_from_memory_scale(gui_image_load_rom_dark_bytes,
                                                                                  gui_image_load_rom_dark_length,
-                                                                                 20,
-                                                                                 20);
+                                                                                 CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH,
+                                                                                 CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT);
     GtkWidget *image  = gtk_image_new_from_pixbuf(pixbuf);
     gtk_widget_set_tooltip_text(button, "Load a ROM");
     gtk_container_add(GTK_CONTAINER(button), image);
@@ -39,12 +39,12 @@ void gui_main_initialize_main_header_bar(void) {
     button = gtk_button_new();
     pixbuf = is_dark_theme_enabled ? gui_image_load_from_memory_scale(gui_image_reset_cpu_light_bytes,
                                                                       gui_image_reset_cpu_light_length,
-                                                                      20,
-                                                                      20)
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH,
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT)
                                    : gui_image_load_from_memory_scale(gui_image_reset_cpu_dark_bytes,
                                                                       gui_image_reset_cpu_dark_length,
-                                                                      20,
-                                                                      20);
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH,
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT);
     image  = gtk_image_new_from_pixbuf(pixbuf);
     gtk_widget_set_tooltip_text(button, "Reset");
     gtk_container_add(GTK_CONTAINER(button), image);
@@ -55,12 +55,12 @@ void gui_main_initialize_main_header_bar(void) {
     button = gtk_menu_button_new();
     pixbuf = is_dark_theme_enabled ? gui_image_load_from_memory_scale(gui_image_state_light_bytes,
                                                                       gui_image_state_light_length,
-                                                                      20,
-                                                                      20)
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH,
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT)
                                    : gui_image_load_from_memory_scale(gui_image_state_dark_bytes,
                                                                       gui_image_state_dark_length,
-                                                                      20,
-                                                                      20);
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH,
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT);
 
     image = gtk_image_new_from_pixbuf(pixbuf);
     gtk_widget_set_tooltip_text(button, "Load/Save state");
@@ -90,12 +90,12 @@ void gui_main_initialize_main_header_bar(void) {
     button = gtk_menu_button_new();
     pixbuf = is_dark_theme_enabled ? gui_image_load_from_memory_scale(gui_image_more_light_bytes,
                                                                       gui_image_more_light_length,
-                                                                      20,
-                                                                      20)
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH,
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT)
                                    : gui_image_load_from_memory_scale(gui_image_more_dark_bytes,
                                                                       gui_image_more_dark_length,
-                                                                      20,
-                                                                      20);
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH,
+                                                                      CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT);
 
     image = gtk_image_new_from_pixbuf(pixbuf);
     gtk_widget_set_tooltip_text(button, "More");

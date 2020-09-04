@@ -4,9 +4,9 @@
 
 void gui_main_initialize_main_window(GtkApplication *app) {
     // Initialize default value
-    gl_gui_components.chip8_screen_width       = 640;
-    gl_gui_components.chip8_screen_height      = 320;
-    gl_gui_components.chip8_screen_pixel_ratio = 10;
+    gl_gui_components.chip8_screen_pixel_ratio = CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO;
+    gl_gui_components.chip8_screen_width       = CHIP8EMU_GUI_SCREEN_DEFAULT_WIDTH;
+    gl_gui_components.chip8_screen_height      = CHIP8EMU_GUI_SCREEN_DEFAULT_HEIGHT;
 
     // Create main window
     gl_gui_components.gtk_window = gtk_application_window_new(app);
@@ -15,7 +15,10 @@ void gui_main_initialize_main_window(GtkApplication *app) {
                                 gl_gui_components.chip8_screen_width,
                                 gl_gui_components.chip8_screen_height);
     gtk_window_set_titlebar(GTK_WINDOW(gl_gui_components.gtk_window), gl_gui_components.gtk_header_bar);
-    GdkPixbuf *icon = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 256, 256);
+    GdkPixbuf *icon = gui_image_load_from_memory_scale(gui_image_logo_bytes,
+                                                       gui_image_logo_length,
+                                                       CHIP8EMU_GUI_APP_ICON_WIDTH,
+                                                       CHIP8EMU_GUI_APP_ICON_HEIGHT);
     gtk_window_set_icon(GTK_WINDOW(gl_gui_components.gtk_window), icon);
     g_object_unref(icon);
     gtk_widget_show_all(gl_gui_components.gtk_window);
