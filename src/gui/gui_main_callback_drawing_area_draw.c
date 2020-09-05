@@ -11,8 +11,10 @@ gboolean gui_main_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, voi
             for (uint8_t x = 0; x < CHIP8_VIDEO_DIM_WIDTH; ++x) {
                 if (gl_gui_components.chip8_cpu->video[y][x] == 1) {
                     cairo_rectangle(cr,
-                                    x * gl_gui_components.chip8_screen_pixel_ratio,
-                                    y * gl_gui_components.chip8_screen_pixel_ratio,
+                                    (x * gl_gui_components.chip8_screen_pixel_ratio)
+                                    + gl_gui_components.chip8_screen_offset_width,
+                                    (y * gl_gui_components.chip8_screen_pixel_ratio)
+                                    + gl_gui_components.chip8_screen_offset_height,
                                     gl_gui_components.chip8_screen_pixel_ratio,
                                     gl_gui_components.chip8_screen_pixel_ratio);
                     cairo_fill(cr);

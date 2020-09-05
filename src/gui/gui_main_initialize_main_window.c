@@ -4,9 +4,11 @@
 
 void gui_main_initialize_main_window(GtkApplication *app) {
     // Initialize default value
-    gl_gui_components.chip8_screen_pixel_ratio = CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO;
-    gl_gui_components.chip8_screen_width       = CHIP8EMU_GUI_SCREEN_DEFAULT_WIDTH;
-    gl_gui_components.chip8_screen_height      = CHIP8EMU_GUI_SCREEN_DEFAULT_HEIGHT;
+    gl_gui_components.chip8_screen_pixel_ratio   = CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO;
+    gl_gui_components.chip8_screen_width         = CHIP8EMU_GUI_SCREEN_DEFAULT_WIDTH;
+    gl_gui_components.chip8_screen_height        = CHIP8EMU_GUI_SCREEN_DEFAULT_HEIGHT;
+    gl_gui_components.chip8_screen_offset_width  = CHIP8EMU_GUI_SCREEN_DEFAULT_OFFSET_WIDTH;
+    gl_gui_components.chip8_screen_offset_height = CHIP8EMU_GUI_SCREEN_DEFAULT_OFFSET_HEIGHT;
 
     // Create main window
     gl_gui_components.gtk_window = gtk_application_window_new(app);

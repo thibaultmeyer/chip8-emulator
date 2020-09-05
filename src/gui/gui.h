@@ -4,15 +4,17 @@
 # include "../chip8/chip8.h"
 # include <gtk/gtk.h>
 
-# define CHIP8EMU_GUI_MAX_FILEBASE_SIZE          512
-# define CHIP8EMU_GUI_MAX_FILENAME_SIZE          1024
-# define CHIP8EMU_GUI_APP_ICON_HEIGHT            256
-# define CHIP8EMU_GUI_APP_ICON_WIDTH             256
-# define CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT   20
-# define CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH    20
-# define CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO 10
-# define CHIP8EMU_GUI_SCREEN_DEFAULT_WIDTH       CHIP8_VIDEO_DIM_WIDTH * CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO
-# define CHIP8EMU_GUI_SCREEN_DEFAULT_HEIGHT      CHIP8_VIDEO_DIM_HEIGHT * CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO
+# define CHIP8EMU_GUI_MAX_FILEBASE_SIZE            512
+# define CHIP8EMU_GUI_MAX_FILENAME_SIZE            1024
+# define CHIP8EMU_GUI_APP_ICON_HEIGHT              256
+# define CHIP8EMU_GUI_APP_ICON_WIDTH               256
+# define CHIP8EMU_GUI_HEADERBAR_BTN_IMG_HEIGHT     20
+# define CHIP8EMU_GUI_HEADERBAR_BTN_IMG_WIDTH      20
+# define CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO   10
+# define CHIP8EMU_GUI_SCREEN_DEFAULT_WIDTH         CHIP8_VIDEO_DIM_WIDTH * CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO
+# define CHIP8EMU_GUI_SCREEN_DEFAULT_HEIGHT        CHIP8_VIDEO_DIM_HEIGHT * CHIP8EMU_GUI_SCREEN_DEFAULT_PIXEL_RATIO
+# define CHIP8EMU_GUI_SCREEN_DEFAULT_OFFSET_WIDTH  0
+# define CHIP8EMU_GUI_SCREEN_DEFAULT_OFFSET_HEIGHT 0
 
 typedef struct s_gui_components {
     GtkWidget   *gtk_window;
@@ -22,6 +24,8 @@ typedef struct s_gui_components {
     guint       gtk_timer_cpu;
     guint       gtk_timer_counter;
     s_chip8_cpu *chip8_cpu;
+    uint32_t    chip8_screen_offset_width;
+    uint32_t    chip8_screen_offset_height;
     uint32_t    chip8_screen_width;
     uint32_t    chip8_screen_height;
     uint32_t    chip8_screen_pixel_ratio;
