@@ -3,6 +3,9 @@
 #include "../version.h"
 
 void gui_main_callback_menu_more_about(GtkApplication *app, gpointer user_data) {
+    (void) app;        // Unused parameter
+    (void) user_data;  // Unused parameter
+
     GdkPixbuf *pixbuf = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 64, 64);
 
     gtk_show_about_dialog(GTK_WINDOW(gl_gui_components.gtk_window),

@@ -74,12 +74,12 @@ void gui_chip8_callback_play_sound(void);
  * Stop all emulation timers. If all timers are
  * stopped, emulation will be in "pause" state.
  */
-void gui_emulation_timer_stop();
+void gui_emulation_timer_stop(void);
 
 /**
  * Start all emulation timers.
  */
-void gui_emulation_timer_start();
+void gui_emulation_timer_start(void);
 
 /**
  * Load image from memory and scale it.
@@ -108,14 +108,14 @@ void gui_main_callback_app_activate(GtkApplication *app, gpointer user_data);
  * @param app GTK application instance
  * @param user_data Custom user data
  */
-gboolean gui_main_callback_chip8_tick_counter();
+gboolean gui_main_callback_chip8_tick_counter(void);
 
 /**
  * Callback. Run the next chip8 CPU instruction.
  *
  * @return TRUE if callback need to be call again
  */
-gboolean gui_main_callback_chip8_tick_cpu();
+gboolean gui_main_callback_chip8_tick_cpu(void);
 
 /**
  * Callback. Drawing area "draw".

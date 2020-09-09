@@ -4,7 +4,7 @@
 # define G_SOURCE_FUNC
 #endif
 
-void gui_emulation_timer_start() {
+void gui_emulation_timer_start(void) {
     // Start "CPU" timer
     if (gl_gui_components.gtk_timer_cpu == 0) {
         gl_gui_components.gtk_timer_cpu = g_timeout_add(1000 / gl_gui_settings.cpu_frequency,

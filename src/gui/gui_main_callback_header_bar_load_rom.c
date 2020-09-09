@@ -3,6 +3,9 @@
 #include "gui.h"
 
 void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
+    (void) app;        // Unused parameter
+    (void) user_data;  // Unused parameter
+
     // Create a file chooser dialog
     GtkWidget *dialog = gtk_file_chooser_dialog_new("Load a ROM",
                                                     GTK_WINDOW(gl_gui_components.gtk_window),

@@ -1,6 +1,8 @@
 #include "gui.h"
 
 void gui_settings_callback_combobox_cpu_frequency(GtkComboBox *widget, gpointer user_data) {
+    (void) user_data;  // Unused parameter
+
     uint32_t    value;
     gboolean    res;
     GtkTreeIter iter;

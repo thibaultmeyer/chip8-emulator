@@ -1,6 +1,8 @@
 #include "gui.h"
 
 void gui_main_callback_window_destroy(GtkWidget *widget, gpointer data) {
+    (void) data;  // Unused parameter
+
     // Stop emulation
     gui_emulation_timer_stop();
 

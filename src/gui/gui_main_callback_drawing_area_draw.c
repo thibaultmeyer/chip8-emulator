@@ -1,6 +1,9 @@
 #include "gui.h"
 
 gboolean gui_main_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *data) {
+    (void) widget;  // Unused parameter
+    (void) data;    // Unused parameter
+
     if (gl_gui_components.chip8_cpu) {
         gdk_cairo_set_source_rgba(cr, &gl_gui_settings.color_background);
         cairo_rectangle(cr, 0, 0, gl_gui_components.chip8_screen_width, gl_gui_components.chip8_screen_height);

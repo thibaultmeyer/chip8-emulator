@@ -2,6 +2,8 @@
 #include "gui.h"
 
 static void gui_settings_callback_window_destroy_force(GtkWidget *widget, gpointer data) {
+    (void) widget;  // Unused parameter
+
     free(data);
 }
 

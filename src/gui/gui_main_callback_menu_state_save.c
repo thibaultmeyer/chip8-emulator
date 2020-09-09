@@ -1,6 +1,9 @@
 #include "gui.h"
 
 void gui_main_callback_menu_state_save(GtkApplication *app, gpointer user_data) {
+    (void) app;        // Unused parameter
+    (void) user_data;  // Unused parameter
+
     if (gl_gui_components.chip8_cpu != NULL && gl_gui_components.current_rom_name != NULL) {
         gchar *state_basename = (gchar *) g_malloc0(sizeof(gchar) * CHIP8EMU_GUI_MAX_FILEBASE_SIZE + 1);
 

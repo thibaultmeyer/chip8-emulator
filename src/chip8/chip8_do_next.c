@@ -5,10 +5,10 @@ void chip8_do_next(s_chip8_cpu *cpu) {
     if (cpu) {
         cpu->current_opcode = chip8_get_opcode(cpu);
 
-        uint8_t offset = get_offset_instruction(cpu->current_opcode);
-        uint8_t b3     = (uint8_t) ((cpu->current_opcode & 0x0F00) >> 8);
-        uint8_t b2     = (uint8_t) ((cpu->current_opcode & 0x00F0) >> 4);
-        uint8_t b1     = (uint8_t) (cpu->current_opcode & 0x000F);
+        const uint8_t offset = get_offset_instruction(cpu->current_opcode);
+        const uint8_t b3     = (uint8_t) ((cpu->current_opcode & 0x0F00) >> 8);
+        const uint8_t b2     = (uint8_t) ((cpu->current_opcode & 0x00F0) >> 4);
+        const uint8_t b1     = (uint8_t) (cpu->current_opcode & 0x000F);
 
         switch (offset) {
             case 0:
