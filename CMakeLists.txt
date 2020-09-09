@@ -15,6 +15,13 @@ IF (MINGW)
             "<CMAKE_RC_COMPILER> -O coff <DEFINES> -i <SOURCE> -o <OBJECT>")
 ENDIF (MINGW)
 
+# Display build type
+IF (NOT CMAKE_BUILD_TYPE)
+    MESSAGE(STATUS "Build type: -")
+ELSE (NOT CMAKE_BUILD_TYPE)
+    MESSAGE(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
+ENDIF (NOT CMAKE_BUILD_TYPE)
+
 # Use the package PkgConfig to detect GTK+ headers/library files
 FIND_PACKAGE(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
