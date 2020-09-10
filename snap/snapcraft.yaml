@@ -11,7 +11,7 @@ adopt-info: chip8-emulator
 apps:
   chip8-emulator:
     command: bin/chip8-emulator
-    extensions: [gnome-3-28]
+    extensions: [ gnome-3-28 ]
     plugs:
       - alsa
       - home
@@ -23,6 +23,7 @@ apps:
 parts:
   chip8-emulator:
     plugin: cmake
+    configflags: [ -DCMAKE_BUILD_TYPE=Release ]
     source: https://github.com/thibaultmeyer/chip8-emulator.git
     source-branch: master
     build-packages:

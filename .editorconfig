@@ -15,3 +15,7 @@ max_line_length = 120
 [*.md]
 trim_trailing_whitespace = false
 indent_size = 2
+
+[*.yaml]
+trim_trailing_whitespace = false
+indent_size = 2
