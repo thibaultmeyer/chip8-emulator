@@ -9,9 +9,9 @@ e_statesave_status chip8_state_save(s_chip8_cpu *cpu, const char *filename) {
 
     // Open file
 #ifdef _WIN32
-    file_descriptor = open(filename, O_WRONLY | O_CREAT | O_BINARY, S_IWUSR);
+    file_descriptor = open(filename, O_WRONLY | O_CREAT | O_BINARY, S_IWUSR | S_IRUSR);
 #else
-    file_descriptor = open(filename, O_WRONLY | O_CREAT, S_IWUSR);
+    file_descriptor = open(filename, O_WRONLY | O_CREAT, S_IWUSR | S_IRUSR);
 #endif
     if (file_descriptor > 0) {
 
