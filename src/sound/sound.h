@@ -26,14 +26,23 @@ typedef struct s_sound_components {
 } s_sound_components;
 
 /**
- * Handle to the gui components.
+ * Handle to the sound components.
  */
 extern s_sound_components gl_sound_components;
 
+/**
+ * Initialize the audio engine.
+ */
 void sound_initialize(void);
 
+/**
+ * Play a simple noise.
+ */
 void sound_play_buzzer(void);
 
+/**
+ * Destroys the audio engine.
+ */
 void sound_destroy(void);
 
 #endif //CHIP8EMU_SOUND_H

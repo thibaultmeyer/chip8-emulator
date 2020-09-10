@@ -60,6 +60,9 @@ typedef enum e_statesave_status {
     STATE_SAVE_STATUS_ERROR_WRITE_ERROR              = 3,
 } e_statesave_status;
 
+/**
+ * Handle to CHIP-8 OPCODE mask helper.
+ */
 extern const s_chip8_mask gl_chip8_mask;
 
 /**
