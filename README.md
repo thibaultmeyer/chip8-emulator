@@ -1,6 +1,6 @@
 # CHIP-8 Emulator
 
-[![Latest release](https://img.shields.io/badge/latest_release-3.0-orange.svg)](https://github.com/thibaultmeyer/chip8-emulator/releases)
+[![Latest release](https://img.shields.io/badge/latest_release-3.1-orange.svg)](https://github.com/thibaultmeyer/chip8-emulator/releases)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/thibaultmeyer/chip8-emulator/blob/master/LICENSE)
 [![CodeFactor](https://www.codefactor.io/repository/github/thibaultmeyer/chip8-emulator/badge)](https://www.codefactor.io/repository/github/thibaultmeyer/chip8-emulator)
 
