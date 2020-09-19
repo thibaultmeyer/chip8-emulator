@@ -1,8 +1,8 @@
 #include "gui.h"
 
-gboolean gui_main_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer data) {
-    (void) widget;  // Unused parameter
-    (void) data;    // Unused parameter
+gboolean gui_main_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer user_data) {
+    (void) widget;     // Unused parameter
+    (void) user_data;  // Unused parameter
 
     if (gl_gui_components.chip8_cpu) {
         uint8_t value = event->type == GDK_KEY_PRESS ? 1 : 0;

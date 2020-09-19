@@ -105,8 +105,7 @@ void gui_main_callback_app_activate(GtkApplication *app, gpointer user_data);
 /**
  * Callback. Update counter.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @return TRUE if callback need to be call again
  */
 gboolean gui_main_callback_chip8_tick_counter(void);
 
@@ -120,26 +119,26 @@ gboolean gui_main_callback_chip8_tick_cpu(void);
 /**
  * Callback. Drawing area "draw".
  *
- * @param app Widget instance
- * @param allocation Allocation information
+ * @param widget Widget instance
+ * @param cr Cairo instance
  * @param user_data Custom user data
  */
-gboolean gui_main_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *data);
+gboolean gui_main_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *user_data);
 
 /**
  * Callback. Drawing area dimension changed.
  *
- * @param app Widget instance
+ * @param widget Widget instance
  * @param allocation Allocation information
  * @param user_data Custom user data
  */
-void gui_main_callback_drawing_area_new_size(GtkWidget *widget, GtkAllocation *allocation, void *data);
+void gui_main_callback_drawing_area_new_size(GtkWidget *widget, GtkAllocation *allocation, void *user_data);
 
 /**
  * Callback. Load a ROM.
  *
  * @param app GTK application instance
- * @param user_data Custom user data
+ * @param user_data Pointer to custom user data
  */
 void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data);
 
@@ -186,18 +185,18 @@ void gui_main_callback_menu_state_save(GtkApplication *app, gpointer user_data);
 /**
  * Callback. Main window is destroyed.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @param widget Widget instance
+ * @param user_data Pointer to custom user data
  */
-void gui_main_callback_window_destroy(GtkWidget *widget, gpointer data);
+void gui_main_callback_window_destroy(GtkWidget *widget, gpointer user_data);
 
 /**
  * Callback. A key has been pressed or released.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @param widget Widget instance
+ * @param user_data Pointer to custom user data
  */
-gboolean gui_main_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer data);
+gboolean gui_main_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer user_data);
 
 /**
  * Initialize the header bar.
@@ -206,6 +205,8 @@ void gui_main_initialize_main_header_bar(void);
 
 /**
  * Initialize the main window.
+ *
+ * @param app The Gtk application instance
  */
 void gui_main_initialize_main_window(GtkApplication *app);
 
@@ -213,7 +214,7 @@ void gui_main_initialize_main_window(GtkApplication *app);
  * Settings - Callback - Set the background color.
  *
  * @param widget Handle to the GTK color button
- * @param user_data Custom user data
+ * @param user_data Pointer to custom user data
  */
 void gui_settings_callback_colorbutton_background(GtkColorButton *widget, gpointer user_data);
 
@@ -221,7 +222,7 @@ void gui_settings_callback_colorbutton_background(GtkColorButton *widget, gpoint
  * Settings - Callback - Set the foreground color.
  *
  * @param widget Handle to the GTK color button
- * @param user_data Custom user data
+ * @param user_data Pointer to custom user data
  */
 void gui_settings_callback_colorbutton_foreground(GtkColorButton *widget, gpointer user_data);
 
@@ -229,7 +230,7 @@ void gui_settings_callback_colorbutton_foreground(GtkColorButton *widget, gpoint
  * Settings - Callback - Set the CPU frequency.
  *
  * @param widget Handle to the combobox widget
- * @param user_data Custom user data
+ * @param user_data Pointer to custom user data
  */
 void gui_settings_callback_combobox_cpu_frequency(GtkComboBox *widget, gpointer user_data);
 
@@ -244,10 +245,10 @@ void gui_settings_callback_btn_input_key(GtkButton *button, s_gui_key_binding_co
 /**
  * Callback. Settings window is destroyed.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @param widget Widget instance
+ * @param user_data Pointer to custom user data
  */
-void gui_settings_callback_window_destroy(GtkWidget *widget, gpointer data);
+void gui_settings_callback_window_destroy(GtkWidget *widget, gpointer user_data);
 
 /**
  * Initialize the settings window.

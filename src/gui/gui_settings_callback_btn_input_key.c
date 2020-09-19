@@ -1,7 +1,7 @@
 #include "gui.h"
 #include "gui_image_logo.h"
 
-static gboolean test(GtkWidget *widget, GdkEventKey *event, s_gui_key_binding_context *key_binding_ctx) {
+static gboolean apply_new_binding(GtkWidget *widget, GdkEventKey *event, s_gui_key_binding_context *key_binding_ctx) {
     // Set new value
     gl_gui_settings.keybinding[key_binding_ctx->key_idx] = event->keyval;
 
@@ -52,7 +52,7 @@ void gui_settings_callback_btn_input_key(GtkButton *button, s_gui_key_binding_co
     components = g_slist_append(components, icon);
 
     // Connect signal
-    g_signal_connect(window, "key_press_event", G_CALLBACK(test), key_binding_ctx);
+    g_signal_connect(window, "key_press_event", G_CALLBACK(apply_new_binding), key_binding_ctx);
     g_signal_connect(window, "destroy", G_CALLBACK(gui_settings_callback_window_destroy), components);
 
     // Show the window

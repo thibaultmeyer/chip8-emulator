@@ -1,8 +1,8 @@
 #include "gui.h"
 
-void gui_main_callback_drawing_area_new_size(GtkWidget *widget, GtkAllocation *allocation, void *data) {
-    (void) widget;  // Unused parameter
-    (void) data;    // Unused parameter
+void gui_main_callback_drawing_area_new_size(GtkWidget *widget, GtkAllocation *allocation, void *user_data) {
+    (void) widget;     // Unused parameter
+    (void) user_data;  // Unused parameter
 
     // Set the new screen size
     gl_gui_components.chip8_screen_height = allocation->height;
