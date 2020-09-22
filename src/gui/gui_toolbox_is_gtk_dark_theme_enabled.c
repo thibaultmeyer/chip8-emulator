@@ -1,14 +1,18 @@
 #include "gui.h"
 
 gboolean gui_toolbox_is_gtk_dark_theme_enabled(void) {
-    GtkSettings *settings = gtk_settings_get_default();
-    gchar       *value    = NULL;
+    GtkSettings *const settings   = gtk_settings_get_default();
+    gchar       *const theme_name = NULL;
+    gboolean    prefer_dark_mode  = FALSE;
 
-    g_object_get(settings, "gtk-theme-name", &value, NULL);
-    gboolean res = g_strrstr(value, "dark") != NULL;
+    g_object_get(settings,
+                 "gtk-theme-name", &theme_name,
+                 "gtk-application-prefer-dark-theme", &prefer_dark_mode,
+                 NULL);
+    const gboolean res = prefer_dark_mode == 1 || g_strrstr(theme_name, "dark") != NULL;
 
     g_object_unref(settings);
-    g_free(value);
+    g_free(theme_name);
 
-    return res;
+    return (prefer_dark_mode || res);
 }
