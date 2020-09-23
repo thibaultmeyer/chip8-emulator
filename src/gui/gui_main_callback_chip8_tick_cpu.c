@@ -10,5 +10,5 @@ gboolean gui_main_callback_chip8_tick_cpu(void) {
         }
     }
 
-    return TRUE;
+    return (TRUE);
 }

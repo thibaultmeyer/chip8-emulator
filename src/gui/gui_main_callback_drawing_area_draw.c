@@ -30,5 +30,5 @@ gboolean gui_main_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, voi
         cairo_fill(cr);
     }
 
-    return TRUE;
+    return (TRUE);
 }

@@ -23,5 +23,5 @@ int main(int argc, char **argv) {
     sound_destroy();
 
     // Return status
-    return status;
+    return (status);
 }

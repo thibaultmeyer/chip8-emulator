@@ -14,5 +14,5 @@ gboolean gui_toolbox_is_gtk_dark_theme_enabled(void) {
     g_object_unref(settings);
     g_free(theme_name);
 
-    return (prefer_dark_mode || res);
+    return (res);
 }

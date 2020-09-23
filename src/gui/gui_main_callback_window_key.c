@@ -14,5 +14,5 @@ gboolean gui_main_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpo
         }
     }
 
-    return FALSE;
+    return (FALSE);
 }

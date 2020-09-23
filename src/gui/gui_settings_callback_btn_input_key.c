@@ -14,7 +14,7 @@ static gboolean apply_new_binding(GtkWidget *widget, GdkEventKey *event, s_gui_k
     // Close current window
     gtk_window_close(GTK_WINDOW(widget));
 
-    return FALSE;
+    return (FALSE);
 }
 
 void gui_settings_callback_btn_input_key(GtkButton *button, s_gui_key_binding_context *key_binding_ctx) {

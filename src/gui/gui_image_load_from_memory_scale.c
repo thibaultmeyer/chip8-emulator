@@ -13,5 +13,5 @@ GdkPixbuf *gui_image_load_from_memory_scale(const unsigned char *data,
     g_object_unref(pixbuf_initial);
     gdk_pixbuf_loader_close(loader, NULL);
 
-    return pixbuf_scaled;
+    return (pixbuf_scaled);
 }
