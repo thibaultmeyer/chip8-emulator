@@ -6,16 +6,20 @@ void gui_main_callback_menu_more_about(GtkApplication *app, gpointer user_data) 
     (void) app;        // Unused parameter
     (void) user_data;  // Unused parameter
 
-    GdkPixbuf *pixbuf = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 64, 64);
+    GdkPixbuf      *pixbuf    = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 64, 64);
+    GtkAboutDialog *gtk_about = GTK_ABOUT_DIALOG(gtk_about_dialog_new());
 
-    gtk_show_about_dialog(GTK_WINDOW(gl_gui_components.gtk_window),
-                          "comments", CHIP8EMU_DESCRIPTION,
-                          "copyright", CHIP8EMU_COPYRIGHT,
-                          "license_type", GTK_LICENSE_MIT_X11,
-                          "logo", pixbuf,
-                          "program_name", CHIP8EMU_APPNAME,
-                          "version", CHIP8EMU_VERSION,
-                          "website", CHIP8EMU_WEBSITE,
-                          NULL);
+    gtk_about_dialog_set_comments(gtk_about, CHIP8EMU_DESCRIPTION);
+    gtk_about_dialog_set_copyright(gtk_about, CHIP8EMU_COPYRIGHT);
+    gtk_about_dialog_set_license_type(gtk_about, GTK_LICENSE_MIT_X11);
+    gtk_about_dialog_set_logo(gtk_about, pixbuf);
+    gtk_about_dialog_set_program_name(gtk_about, CHIP8EMU_APPNAME);
+    gtk_about_dialog_set_version(gtk_about, CHIP8EMU_VERSION);
+    gtk_about_dialog_set_website(gtk_about, CHIP8EMU_WEBSITE);
+
+    gtk_window_set_transient_for(GTK_WINDOW(gtk_about), GTK_WINDOW(gl_gui_components.gtk_window));
+    gtk_dialog_run(GTK_DIALOG(gtk_about));
+
     g_object_unref(pixbuf);
+    g_object_unref(gtk_about);
 }
