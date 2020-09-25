@@ -1,7 +1,7 @@
 #include "gui.h"
 
-void gui_main_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_data) {
-    (void) app;        // Unused parameter
+void gui_main_callback_header_bar_reset_cpu(GtkButton *button, gpointer user_data) {
+    (void) button;     // Unused parameter
     (void) user_data;  // Unused parameter
 
     if (gl_gui_components.chip8_cpu) {

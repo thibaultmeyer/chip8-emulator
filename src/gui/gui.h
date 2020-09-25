@@ -105,96 +105,99 @@ void gui_main_callback_app_activate(GtkApplication *app, gpointer user_data);
 /**
  * Callback. Update counter.
  *
+ * @param user_data Data passed to the function
  * @return TRUE if callback need to be call again
  */
-gboolean gui_main_callback_chip8_tick_counter(void);
+gboolean gui_main_callback_chip8_tick_counter(gpointer user_data);
 
 /**
  * Callback. Run the next chip8 CPU instruction.
  *
+ * @param user_data Data passed to the function
  * @return TRUE if callback need to be call again
  */
-gboolean gui_main_callback_chip8_tick_cpu(void);
+gboolean gui_main_callback_chip8_tick_cpu(gpointer user_data);
 
 /**
  * Callback. Drawing area "draw".
  *
- * @param widget Widget instance
- * @param cr Cairo instance
- * @param user_data Custom user data
+ * @param widget The object which received the signal
+ * @param cr The cairo context to draw to
+ * @param user_data User data set when the signal handler was connected
  */
 gboolean gui_main_callback_drawing_area_draw(GtkWidget *widget, cairo_t *cr, void *user_data);
 
 /**
  * Callback. Drawing area dimension changed.
  *
- * @param widget Widget instance
- * @param allocation Allocation information
- * @param user_data Custom user data
+ * @param widget The object which received the signal
+ * @param allocation The region which has been allocated to the widget
+ * @param user_data User data set when the signal handler was connected
  */
 void gui_main_callback_drawing_area_new_size(GtkWidget *widget, GtkAllocation *allocation, void *user_data);
 
 /**
  * Callback. Load a ROM.
  *
- * @param app GTK application instance
- * @param user_data Pointer to custom user data
+ * @param button The object that received the signal
+ * @param user_data User data set when the signal handler was connected
  */
-void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data);
+void gui_main_callback_header_bar_load_rom(GtkButton *button, gpointer user_data);
 
 /**
  * Callback. Reset chip8 CPU.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @param button The object that received the signal
+ * @param user_data User data set when the signal handler was connected
  */
-void gui_main_callback_header_bar_reset_cpu(GtkApplication *app, gpointer user_data);
+void gui_main_callback_header_bar_reset_cpu(GtkButton *button, gpointer user_data);
 
 /**
  * Callback. Show "about" dialog.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @param menuitem The object which received the signal
+ * @param user_data User data set when the signal handler was connected
  */
-void gui_main_callback_menu_more_about(GtkApplication *app, gpointer user_data);
+void gui_main_callback_menu_more_about(GtkMenuItem *menuitem, gpointer user_data);
 
 /**
  * Callback. Show "settings" dialog.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @param menuitem The object which received the signal
+ * @param user_data User data set when the signal handler was connected
  */
-void gui_main_callback_menu_more_settings(GtkApplication *app, gpointer user_data);
+void gui_main_callback_menu_more_settings(GtkMenuItem *menuitem, gpointer user_data);
 
 /**
  * Callback. Load CPU state.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @param menuitem The object which received the signal
+ * @param user_data User data set when the signal handler was connected
  */
-void gui_main_callback_menu_state_load(GtkApplication *app, gpointer user_data);
+void gui_main_callback_menu_state_load(GtkMenuItem *menuitem, gpointer user_data);
 
 /**
  * Callback. Save CPU state.
  *
- * @param app GTK application instance
- * @param user_data Custom user data
+ * @param menuitem The object which received the signal
+ * @param user_data User data set when the signal handler was connected
  */
-void gui_main_callback_menu_state_save(GtkApplication *app, gpointer user_data);
+void gui_main_callback_menu_state_save(GtkMenuItem *menuitem, gpointer user_data);
 
 /**
  * Callback. Main window is destroyed.
  *
- * @param widget Widget instance
- * @param user_data Pointer to custom user data
+ * @param widget The object which received the signal
+ * @param user_data User data set when the signal handler was connected
  */
 void gui_main_callback_window_destroy(GtkWidget *widget, gpointer user_data);
 
 /**
  * Callback. A key has been pressed or released.
  *
- * @param widget Widget instance
- * @param user_data Pointer to custom user data
+ * @param widget The object which received the signal
+ * @param event The GdkEvent which triggered this signal
+ * @param user_data User data set when the signal handler was connected
  */
 gboolean gui_main_callback_window_key(GtkWidget *widget, GdkEventKey *event, gpointer user_data);
 
@@ -213,31 +216,31 @@ void gui_main_initialize_main_window(GtkApplication *app);
 /**
  * Settings - Callback - Set the background color.
  *
- * @param widget Handle to the GTK color button
- * @param user_data Pointer to custom user data
+ * @param color_button The color button that received the signal
+ * @param user_data User data set when the signal handler was connected
  */
-void gui_settings_callback_colorbutton_background(GtkColorButton *widget, gpointer user_data);
+void gui_settings_callback_colorbutton_background(GtkColorButton *color_button, gpointer user_data);
 
 /**
  * Settings - Callback - Set the foreground color.
  *
- * @param widget Handle to the GTK color button
- * @param user_data Pointer to custom user data
+ * @param color_button The color button that received the signal
+ * @param user_data User data set when the signal handler was connected
  */
-void gui_settings_callback_colorbutton_foreground(GtkColorButton *widget, gpointer user_data);
+void gui_settings_callback_colorbutton_foreground(GtkColorButton *color_button, gpointer user_data);
 
 /**
  * Settings - Callback - Set the CPU frequency.
  *
- * @param widget Handle to the combobox widget
- * @param user_data Pointer to custom user data
+ * @param widget The object which received the signal
+ * @param user_data User data set when the signal handler was connected
  */
 void gui_settings_callback_combobox_cpu_frequency(GtkComboBox *widget, gpointer user_data);
 
 /**
  * Settings - Callback - Set binding for a specific key.
  *
- * @param button Handle to the GTK button
+ * @param button The object that received the signal
  * @param key_binding_ctx Key binding context
  */
 void gui_settings_callback_btn_input_key(GtkButton *button, s_gui_key_binding_context *key_binding_ctx);
@@ -245,8 +248,8 @@ void gui_settings_callback_btn_input_key(GtkButton *button, s_gui_key_binding_co
 /**
  * Callback. Settings window is destroyed.
  *
- * @param widget Widget instance
- * @param user_data Pointer to custom user data
+ * @param widget The object which received the signal
+ * @param user_data User data set when the signal handler was connected
  */
 void gui_settings_callback_window_destroy(GtkWidget *widget, gpointer user_data);
 

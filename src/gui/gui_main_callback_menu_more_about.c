@@ -2,8 +2,8 @@
 #include "gui_image_logo.h"
 #include "../version.h"
 
-void gui_main_callback_menu_more_about(GtkApplication *app, gpointer user_data) {
-    (void) app;        // Unused parameter
+void gui_main_callback_menu_more_about(GtkMenuItem *menuitem, gpointer user_data) {
+    (void) menuitem;   // Unused parameter
     (void) user_data;  // Unused parameter
 
     GdkPixbuf      *pixbuf    = gui_image_load_from_memory_scale(gui_image_logo_bytes, gui_image_logo_length, 64, 64);

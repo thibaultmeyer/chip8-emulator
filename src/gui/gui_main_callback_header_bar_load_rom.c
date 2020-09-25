@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include "gui.h"
 
-void gui_main_callback_header_bar_load_rom(GtkApplication *app, gpointer user_data) {
-    (void) app;        // Unused parameter
+void gui_main_callback_header_bar_load_rom(GtkButton *button, gpointer user_data) {
+    (void) button;     // Unused parameter
     (void) user_data;  // Unused parameter
 
     // Create a file chooser dialog
