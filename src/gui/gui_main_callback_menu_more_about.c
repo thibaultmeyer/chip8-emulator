@@ -21,5 +21,5 @@ void gui_main_callback_menu_more_about(GtkMenuItem *menuitem, gpointer user_data
     gtk_dialog_run(GTK_DIALOG(gtk_about));
 
     g_object_unref(pixbuf);
-    g_object_unref(gtk_about);
+    gtk_widget_destroy(GTK_WIDGET(gtk_about));
 }
