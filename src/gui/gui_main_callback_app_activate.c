@@ -11,6 +11,8 @@ void gui_main_callback_app_activate(GtkApplication *app, gpointer user_data) {
 
     gui_toolbox_create_storage_directory();
     gui_toolbox_load_settings_from_file_or_default();
-    gui_main_initialize_main_header_bar();
     gui_main_initialize_main_window(app);
+    gui_main_initialize_main_header_bar();
+
+    gtk_widget_show_all(gl_gui_components.gtk_window);
 }

@@ -309,9 +309,10 @@ gchar *gui_toolbox_get_storage_file_path(const char *filename);
 /**
  * Check if a GTK dark theme is currently in use.
  *
+ * @param widget Widget instance used to determine if dark mode is enable
  * @return true if the current GTK theme is dark
  */
-gboolean gui_toolbox_is_gtk_dark_theme_enabled(void);
+gboolean gui_toolbox_is_gtk_dark_theme_enabled(GtkWidget *widget);
 
 /**
  * Load settings from file or use default values.

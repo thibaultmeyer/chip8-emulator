@@ -15,9 +15,10 @@ void gui_main_initialize_main_header_bar(void) {
     gtk_header_bar_set_show_close_button(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), TRUE);
     gtk_header_bar_set_title(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), CHIP8EMU_APPNAME);
     gtk_header_bar_set_subtitle(GTK_HEADER_BAR(gl_gui_components.gtk_header_bar), "no ROM loaded");
+    gtk_window_set_titlebar(GTK_WINDOW(gl_gui_components.gtk_window), gl_gui_components.gtk_header_bar);
 
     // Check dark theme
-    gboolean is_dark_theme_enabled = gui_toolbox_is_gtk_dark_theme_enabled();
+    gboolean is_dark_theme_enabled = gui_toolbox_is_gtk_dark_theme_enabled(gl_gui_components.gtk_window);
 
     // Button - Load ROM
     GtkWidget *button = gtk_button_new();
