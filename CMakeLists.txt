@@ -1,11 +1,21 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 3.10.2)
 PROJECT(chip8-emulator C)
 
+# Application version
+SET(CHIP8EMU_AUTHOR "Thibault Meyer")
+SET(CHIP8EMU_APPNAME "CHIP-8 Emulator")
+SET(CHIP8EMU_VERSION "3.2")
+SET(CHIP8EMU_VERSION_WIN_FILE "3,2,0,0")
+SET(CHIP8EMU_COPYRIGHT "© 2020 ${CHIP8EMU_AUTHOR}")
+
 # Settings
 SET(CMAKE_C_STANDARD 99)
 SET(CMAKE_C_FLAGS "-Wall")
 SET(CMAKE_CXX_FLAGS_DEBUG "-g")
 SET(CMAKE_CXX_FLAGS_RELEASE "-O2")
+
+# Configure version.h file
+CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/res/version.h.template ${CMAKE_SOURCE_DIR}/src/version.h)
 
 # Configure windres: don't use flags
 IF (MINGW)
@@ -35,6 +45,17 @@ LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS} ${OPENAL_LIBRARY_DIRS})
 # Add other flags to the compiler
 ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER})
 
+# Defines properties for MacOS app bundle
+IF (APPLE)
+    SET(MACOSX_BUNDLE_LONG_VERSION_STRING ${CHIP8EMU_VERSION})
+    SET(MACOSX_BUNDLE_SHORT_VERSION_STRING ${CHIP8EMU_VERSION})
+    SET(MACOSX_BUNDLE_COPYRIGHT ${CHIP8EMU_COPYRIGHT})
+    SET(MACOSX_BUNDLE_BUNDLE_NAME ${CHIP8EMU_APPNAME})
+    SET(MAC_ICON ${CMAKE_SOURCE_DIR}/res/application-icon-macos.icns)
+    SET_SOURCE_FILES_PROPERTIES(${MAC_ICON} PROPERTIES MACOSX_PACKAGE_LOCATION Resources)
+    SET(MACOSX_BUNDLE_ICON_FILE application-icon-macos.icns)
+ENDIF (APPLE)
+
 # Files
 IF (OPENAL_FOUND)
     ADD_DEFINITIONS("-DHAVE_AUDIO_BACKEND=1")
@@ -48,6 +69,7 @@ ENDIF (OPENAL_FOUND)
 
 ADD_EXECUTABLE(
         chip8-emulator WIN32
+        MACOSX_BUNDLE
         src/main.c
         src/chip8/chip8.h
         src/chip8/chip8_do_next.c
@@ -142,7 +164,8 @@ ADD_EXECUTABLE(
         src/gui/gui_toolbox_load_settings_from_file_or_default.c
         src/gui/gui_toolbox_save_settings_to_file.c
         ${AUDIO_BACKEND_FILES}
-        chip8-emulator.rc)
+        chip8-emulator.rc
+        ${MAC_ICON})
 
 # Link the target to the GTK+ libraries
 TARGET_LINK_LIBRARIES(chip8-emulator -lm ${GTK3_LIBRARIES} ${OPENAL_LIBRARIES})
