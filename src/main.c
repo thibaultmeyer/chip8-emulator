@@ -1,5 +1,10 @@
 #include "gui/gui.h"
-#include "sound/sound.h"
+
+#ifdef HAVE_AUDIO_BACKEND
+
+# include "sound/sound.h"
+
+#endif
 
 /**
  * Entry point.
@@ -9,8 +14,10 @@
  * @return Application status
  */
 int main(int argc, char **argv) {
+#ifdef HAVE_AUDIO_BACKEND
     // Initialize sound engine
     sound_initialize();
+#endif
 
     // Initialize GTK
     gtk_init(&argc, &argv);
@@ -19,8 +26,10 @@ int main(int argc, char **argv) {
     int status = g_application_run(G_APPLICATION(app), argc, argv);
     g_object_unref(app);
 
+#ifdef HAVE_AUDIO_BACKEND
     // Destroy sound engine
     sound_destroy();
+#endif
 
     // Return status
     return (status);

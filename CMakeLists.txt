@@ -25,7 +25,7 @@ ENDIF (NOT CMAKE_BUILD_TYPE)
 # Use the package PkgConfig to detect GTK+ headers/library files
 FIND_PACKAGE(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(GTK3 REQUIRED gtk+-3.0)
-PKG_CHECK_MODULES(OPENAL REQUIRED openal)
+PKG_CHECK_MODULES(OPENAL openal)
 
 # Setup CMake to use GTK+, tell the compiler where to look for headers
 # and to the linker where to look for libraries
@@ -36,6 +36,16 @@ LINK_DIRECTORIES(${GTK3_LIBRARY_DIRS} ${OPENAL_LIBRARY_DIRS})
 ADD_DEFINITIONS(${GTK3_CFLAGS_OTHER})
 
 # Files
+IF (OPENAL_FOUND)
+    ADD_DEFINITIONS("-DHAVE_AUDIO_BACKEND=1")
+    LIST(
+            APPEND
+            AUDIO_BACKEND_FILES
+            src/sound/sound_destroy.c
+            src/sound/sound_initialize.c
+            src/sound/sound_play_buzzer.c)
+ENDIF (OPENAL_FOUND)
+
 ADD_EXECUTABLE(
         chip8-emulator WIN32
         src/main.c
@@ -131,9 +141,7 @@ ADD_EXECUTABLE(
         src/gui/gui_toolbox_is_gtk_dark_theme_enabled
         src/gui/gui_toolbox_load_settings_from_file_or_default.c
         src/gui/gui_toolbox_save_settings_to_file.c
-        src/sound/sound_destroy.c
-        src/sound/sound_initialize.c
-        src/sound/sound_play_buzzer.c
+        ${AUDIO_BACKEND_FILES}
         chip8-emulator.rc)
 
 # Link the target to the GTK+ libraries
