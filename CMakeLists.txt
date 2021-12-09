@@ -160,7 +160,7 @@ ADD_EXECUTABLE(
         src/gui/gui_settings_init_key_binding.c
         src/gui/gui_toolbox_create_storage_directory.c
         src/gui/gui_toolbox_get_storage_file_path.c
-        src/gui/gui_toolbox_is_gtk_dark_theme_enabled
+        src/gui/gui_toolbox_is_gtk_dark_theme_enabled.c
         src/gui/gui_toolbox_load_settings_from_file_or_default.c
         src/gui/gui_toolbox_save_settings_to_file.c
         ${AUDIO_BACKEND_FILES}
